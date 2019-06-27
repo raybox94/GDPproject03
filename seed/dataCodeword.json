@@ -1,0 +1,1462 @@
+[
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": "APPLE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": "BEARCAT",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": "CLEAN",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": "DONKEY",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": "ELEPHANT",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": "CHAIN",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": "GIRAFFE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": "HORSE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": "INDEX",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": "JACKEL",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": "KANGAROO",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": "LLAMA",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": "MOOSE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": "ISSUE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": "OSTRICH",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": "PUPPY",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": "PAPER",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": "ROOSTER",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": "STARFISH",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": "TIGER",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": "AUSTRALIA",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": "AUSTRIA",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " PROGRESSIVE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " CREVICE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " DANGER",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " JUSTICE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": "ACQUISITION",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " REACTION",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " FLOWER",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " ROUTINE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " LEADERSHIP",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " COMMUNIST",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " MEADOW",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " PROVINCIAL",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " FOLK MUSIC",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " TREATY",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " DEFINITE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " THEORIST",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " SYSTEM",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " OUTPUT",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " UNCERTAINTY",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " NEGLIGENCE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " REASON",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " SCREAM",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " MUTTER",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " CONTRAST",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " PHYSICS",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " ASTONISHING",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " EMBARK",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " INTERVENTION",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " FLOURISH",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " EAVESDROP",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " DOMESTIC",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " SUNRISE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " DRESSING",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " EXCLUSIVE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " UNANIMOUS",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " LADDER",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " MARBLE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " FREEZE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " CAPITAL",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " CRIMINAL",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " EXAMPLE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " ENTHUSIASM",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " ADVENTURE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " EXCEPTION",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " DEVOTE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " DEPUTY",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " BISHOP",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " INFLATION",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " EARTHFLAX",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " DOUBLE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " WELCOME",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " CUSTODY",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " AFFECT",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " LIBERTY",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " CLASSROOM",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " PASSION",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " DECREASE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " ANALYSIS",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " FIRST-HAND",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " DEPARTURE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " SKETCH",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " NATIONALIST",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " PROFILE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " LIMITED",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " DEPART",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " SALMON",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " COMMAND",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " DISAGREEMENT",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " VOYAGE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " SECOND",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " MISCARRIAGE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " ATMOSPHERE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " MEDIUM",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " SCULPTURE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " BREAST",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " EXCUSE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " UNAWARE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " DISTANT",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " SCRAPE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " MIXTURE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " BATHTUB",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " RESERVOIR",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " PROTEST",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " STRANGE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " RIBBON",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " ILLNESS",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " PRESIDENT",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " DECORATIVE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " ALUMINIUM",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " LAUNDRY",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " DISTANCE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " PACKET",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " VEHICLE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " MANUFACTURER",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " EXEMPTION",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " SECRETARY",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " PREPARATION",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " TALENTED",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " UNDERMINE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " PUBLISH",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " COPPER",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " GUERRILLA",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " MAIL CARRIER",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " DISCOVERY",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " HYPOTHESIS",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " HEAVEN",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " CIGARETTE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " CORRESPONDENCE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " ECONOMIST",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " CONVINCE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " VARIETY",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " DEADLY",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " SCENARIO",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " GUTTER",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " FOREST",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " CONSCIOUSNESS",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " GAS PEDAL",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " PERSIST",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " ADVISER",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " RESPONSE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " STRIKE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " POLISH",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " GENERAL",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " ABSORB",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " ROMANTIC",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " CONCENTRATE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " LIABILITY",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " CONFUSION",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " MONKEY",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " JOYSTICK",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " CUTTING",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " LOYALTY",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " CONFLICT",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " BOTHER",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " AGENDA",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " STEWARD",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " SHORTAGE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " GLANCE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " RETAIN",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " FACADE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " GENERATE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " SHRINK",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " ARTIST",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " ORCHESTRA",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " BURIAL",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " CALENDAR",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " PERCEIVE",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " SERVICE",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " CONNECTION",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " PENALTY",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " SENSITIVE",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " CONVERT",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " REMIND",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " RESIGNATION",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " MANUFACTURE",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " DIALOGUE",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " ADVOCATE",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " OCCASION",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " RESPECTABLE",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " INTELLIGENCE",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " VEGETATION",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " PENSION",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " SEASONAL",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " FORTUNE",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " ECONOMIC",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " ENVIRONMENTAL",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " INTRODUCE",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " BALLET",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " INSPIRATION",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " WHISPER",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " ENGINEER",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " DAMAGE",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " UNDERSTAND",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " PRODUCT",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " SECULAR",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " FABRICATE",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Large Set",
+    "Codeword": " NEGOTIATION",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "DETROIT",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "AFRICA",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "ALMOND",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "ANGER",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "AMERICA",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "BRAVO",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "BANKER",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "BOUNCE",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "BIGGER",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "COMPUTER",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "CANCER",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "CHAIRS",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "CENTER",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "DAGGER",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "DRAKE",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "DRUMMER",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "DODGE",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "EARTH",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "ELVIS",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "EXTRA",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "ENGAGE",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "FRANCE",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "FOXTROT",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "FANCY",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "FELINE",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "GOOSE",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "GINGER",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "GLOBE",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "GERMANY",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "HOTEL",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "HANGER",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "HELMET",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "HIDDEN",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "ICECREAM",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "INKSPOT",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "IMPULSE",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "IVORY",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "KITTEN",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "KANGAROO",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "KENNEDY",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "LEMON",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "LANTHERN",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Small Set",
+    "Codeword": "LONDON",
+    "is_assigned": false
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "LIGHT",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "MILKY",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "MUMBAI",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "MONEY",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "MARKET",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "NATIVE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "NATION",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "NOVEMBER",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "NICKEL",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "OBJECT",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "OPTION",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "ONION",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "ORANGE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "PARROT",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "PENCIL",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "PURPLE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "PEACH",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "QUICK",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "QUASAR",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "QUEST",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "ROMANCE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "REDWOOD",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "ROUND",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "RANGE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "STEVE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "SENDER",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "SATURN",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "SINGER",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "TWILIGHT",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "TITANIC",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "TOWER",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "TANKER",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "UNIFORM",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "ULTIMATE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "VICTORY",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "VAGRANT",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "VELVET",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "VOICE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "WHISKEY",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "WITCH",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "WATER",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "WALLET",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "XEROX",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "YANKEE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "YESTERDAY",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "YOUNG",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "YACHT",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "YELLOW",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "ZOMBIE",
+    "is_assigned": true
+  },
+  {
+    "codewordset_name": "Adb Set",
+    "Codeword": "ZEBRA",
+    "is_assigned": true
+  }
+ ]
