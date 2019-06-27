@@ -1,0 +1,68 @@
+[
+  {
+    "course_name": "Android",
+    "created_by": "hoot@nwmissouri.edu",
+    "codewordset_key": "Large Set",
+    "Startdate": "8/27/2018",
+    "Enddate": "12/28/2018",
+    "pre_survey_url": "",
+    "post_survey_url":"", 
+    "created_at": "2019-06-15T02:00:00", 
+    "updated_at": "2019-06-15T02:00:00"
+  },
+  {
+    "course_name": "WEBAPPS",
+    "created_by": "dcase@nwmissouri.edu",
+    "codewordset_key": "Hoot Original set",
+    "Startdate": "8/27/2018",
+    "Enddate": "12/28/2018",
+    "pre_survey_url": "",
+    "post_survey_url":"", 
+    "created_at": "2019-06-15T02:00:00", 
+    "updated_at": "2019-06-15T02:00:00"
+  },
+  {
+    "course_name": "ADB",
+    "created_by": "hoot@nwmissouri.edu",
+    "codewordset_key": "Adb Set",
+    "Startdate": "8/27/2018",
+    "Enddate": "12/28/2018",
+    "pre_survey_url": "",
+    "post_survey_url":"", 
+    "created_at": "2019-06-15T02:00:00", 
+    "updated_at": "2019-06-15T02:00:00"
+  },
+  {
+    "course_name": "GDP1",
+    "created_by": "dcase@nwmissouri.edu",
+    "codewordset_key": "Hoot Original set",
+    "Startdate": "8/27/2018",
+    "Enddate": "12/28/2018",
+    "pre_survey_url": "",
+    "post_survey_url":"", 
+    "created_at": "2019-06-15T02:00:00", 
+    "updated_at": "2019-06-15T02:00:00"
+  },
+  {
+    "course_name": "BIG DATA",
+    "created_by": "dcase@nwmissouri.edu",
+    "codewordset_key": "Hoot Original set",
+    "Startdate": "8/27/2018",
+    "Enddate": "12/28/2018",
+    "pre_survey_url": "",
+    "post_survey_url":"", 
+    "created_at": "2019-06-15T02:00:00", 
+    "updated_at": "2019-06-15T02:00:00"
+  },
+  {
+    "course_name": "object oriented",
+    "created_by": "dcase@nwmissouri.edu",
+    "codewordset_key": "Hoot Original set",
+    "Startdate": "8/27/2018",
+    "Enddate": "12/28/2018",
+    "pre_survey_url": "",
+    "post_survey_url":"", 
+    "created_at": "2019-06-15T02:00:00", 
+    "updated_at": "2019-06-15T02:00:00"
+  }
+]
