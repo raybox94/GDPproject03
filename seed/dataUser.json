@@ -1,0 +1,267 @@
+[
+    {
+      "email_id": "S533987@nwmissouri.edu",
+      "first_name": "Ankit",
+      "last_name": "Prakash",
+      "password": "abdv1!j12",
+      "role": "student",
+      "isActive": true,
+      "last_login": "2019-06-21T05:00:00",
+      "created_at": "2019-06-20T04:00:00",
+      "updated_at": "2019-06-20T04:00:00"
+    },
+    {
+      "email_id": "S533943@nwmissouri.edu",
+      "first_name": "Rayaan",
+      "last_name": "Ahmed",
+      "password": "nfhg1#1d!5",
+      "role": "admin",
+      "isActive": true,
+      "last_login": "2019-06-19T03:00:00",
+      "created_at": "2019-06-18T04:00:00",
+      "updated_at": "2019-06-18T04:00:00"
+    },
+    {
+      "email_id": "S533943@nwmissouri.edu",
+      "first_name": "Nathan",
+      "last_name": "Eloe",
+      "password": "por#ds12!2",
+      "role": "instructor",
+      "isActive": false,
+      "last_login": "2019-06-19T03:00:00",
+      "created_at": "2019-06-18T04:00:00",
+      "updated_at": "2019-06-18T04:00:00"
+    },
+    {
+        "email_id": "s531519@nwmissouri.edu",
+        "first_name": "Yashwanth",
+        "last_name": "Reddy",
+        "Password": "password",
+        "role": "student",
+        "is_active": true,
+        "last_login": "2019-06-19T03:00:00",
+        "created_at": "2019-06-18T04:00:00",
+        "updated_at": "2019-06-18T04:00:00"
+      },
+      {
+        "email_id": "s530742@nwmissouri.edu",
+        "first_name": "Naveen",
+        "last_name": "Kumar",
+        "Password": "password",
+        "role": "student",
+        "is_active": true,
+        "last_login": "2019-06-19T03:00:01",
+        "created_at": "2019-06-18T04:00:01",
+        "updated_at": "2019-06-18T04:00:01"
+      },
+      {
+        "email_id": "s531495@nwmissouri.edu",
+        "first_name": "Chaithanya",
+        "last_name": "Cherukuru",
+        "Password": "password",
+        "role": "student",
+        "is_active": true,
+        "last_login": "2019-06-19T03:00:02",
+        "created_at": "2019-06-18T04:00:02",
+        "updated_at": "2019-06-18T04:00:02"
+      },
+      {
+        "email_id": "s531367@nwmissouri.edu",
+        "first_name": "Sai",
+        "last_name": "Sirisha",
+        "Password": "password",
+        "role": "student",
+        "is_active": true,
+        "last_login": "2019-06-19T03:00:03",
+        "created_at": "2019-06-18T04:00:03",
+        "updated_at": "2019-06-18T04:00:03"
+      },
+      {
+        "email_id": "s531496@nwmissouri.edu",
+        "first_name": "Shivani",
+        "last_name": "Reddy",
+        "Password": "password",
+        "role": "student",
+        "is_active": true,
+        "last_login": "2019-06-19T03:00:04",
+        "created_at": "2019-06-18T04:00:04",
+        "updated_at": "2019-06-18T04:00:04"
+      },
+      {
+        "email_id": "s531369@nwmissouri.edu",
+        "first_name": "Girish",
+        "last_name": "Guntuku",
+        "Password": "password",
+        "role": "student",
+        "is_active": true,
+        "last_login": "2019-06-19T03:00:05",
+        "created_at": "2019-06-18T04:00:05",
+        "updated_at": "2019-06-18T04:00:05"
+      },
+      {
+        "email_id": "s531499@nwmissouri.edu",
+        "first_name": "Saicharan",
+        "last_name": "Gurudu",
+        "Password": "password",
+        "role": "student",
+        "is_active": true,
+        "last_login": "2019-06-19T03:00:06",
+        "created_at": "2019-06-18T04:00:06",
+        "updated_at": "2019-06-18T04:00:06"
+      },
+      {
+        "email_id": "s531500@nwmissouri.edu",
+        "first_name": "Sravya",
+        "last_name": "Kancharla",
+        "Password": "password",
+        "role": "student",
+        "is_active": true,
+        "last_login": "2019-06-19T03:00:07",
+        "created_at": "2019-06-18T04:00:07",
+        "updated_at": "2019-06-18T04:00:07"
+      },
+      {
+        "email_id": "s531372@nwmissouri.edu",
+        "first_name": "Anurag",
+        "last_name": "Kumar",
+        "Password": "password",
+        "role": "student",
+        "is_active": true,
+        "last_login": "2019-06-19T03:00:08",
+        "created_at": "2019-06-18T04:00:08",
+        "updated_at": "2019-06-18T04:00:08"
+      },
+      {
+        "email_id": "s530473@nwmissouri.edu",
+        "first_name": "Ujjawal",
+        "last_name": "Kumar",
+        "Password": "password",
+        "role": "student",
+        "is_active": true,
+        "last_login": "2019-06-19T03:00:09",
+        "created_at": "2019-06-18T04:00:09",
+        "updated_at": "2019-06-18T04:00:09"
+      },
+      {
+        "email_id": "s531439@nwmissouri.edu",
+        "first_name": "Dattu",
+        "last_name": "Bhargav",
+        "Password": "password",
+        "role": "student",
+        "is_active": true,
+        "last_login": "2019-06-19T03:00:10",
+        "created_at": "2019-06-18T04:00:10",
+        "updated_at": "2019-06-18T04:00:10"
+      },
+      {
+        "email_id": "s531503@nwmissouri.edu",
+        "first_name": "Santosh",
+        "last_name": "Sekhar",
+        "Password": "password",
+        "role": "student",
+        "is_active": true,
+        "last_login": "2019-06-19T03:00:11",
+        "created_at": "2019-06-18T04:00:11",
+        "updated_at": "2019-06-18T04:00:11"
+      },
+      {
+        "email_id": "s531373@nwmissouri.edu",
+        "first_name": "Naveenkumar",
+        "last_name": "Nuggu",
+        "Password": "password",
+        "role": "student",
+        "is_active": true,
+        "last_login": "2019-06-19T03:00:12",
+        "created_at": "2019-06-18T04:00:12",
+        "updated_at": "2019-06-18T04:00:12"
+      },
+      {
+        "email_id": "s531507@nwmissouri.edu",
+        "first_name": "Vijay",
+        "last_name": "Kumar",
+        "Password": "password",
+        "role": "student",
+        "is_active": true,
+        "last_login": "2019-06-19T03:00:13",
+        "created_at": "2019-06-18T04:00:13",
+        "updated_at": "2019-06-18T04:00:13"
+      },
+      {
+        "email_id": "s531508@nwmissouri.edu",
+        "first_name": "Satya",
+        "last_name": "Sai",
+        "Password": "password",
+        "role": "student",
+        "is_active": true,
+        "last_login": "2019-06-19T03:00:14",
+        "created_at": "2019-06-18T04:00:14",
+        "updated_at": "2019-06-18T04:00:14"
+      },
+      {
+        "email_id": "s531382@nwmissouri.edu",
+        "first_name": "Sreelekha",
+        "last_name": "Vijaya",
+        "Password": "password",
+        "role": "student",
+        "is_active": true,
+        "last_login": "2019-06-19T03:00:15",
+        "created_at": "2019-06-18T04:00:15",
+        "updated_at": "2019-06-18T04:00:15"
+      },
+      {
+        "email_id": "mwoolery@nwmissouri.edu",
+        "first_name": "Matthew",
+        "last_name": "Woolery",
+        "Password": "password",
+        "role": "student",
+        "is_active": true,
+        "last_login": "2019-06-19T03:00:16",
+        "created_at": "2019-06-18T04:00:16",
+        "updated_at": "2019-06-18T04:00:16"
+      },
+      {
+        "email_id": "s531383@nwmissouri.edu",
+        "first_name": "Vyshnavi",
+        "last_name": "Yalamareddy",
+        "Password": "password",
+        "role": "student",
+        "is_active": true,
+        "last_login": "2019-06-19T03:00:17",
+        "created_at": "2019-06-18T04:00:17",
+        "updated_at": "2019-06-18T04:00:17"
+      },
+      {
+        "email_id": "s531384@nwmissouri.edu",
+        "first_name": "Srimai",
+        "last_name": "Reddy",
+        "Password": "password",
+        "role": "student",
+        "is_active": true,
+        "last_login": "2019-06-19T03:00:18",
+        "created_at": "2019-06-18T04:00:18",
+        "updated_at": "2019-06-18T04:00:18"
+      },
+      {
+        "email_id": "hoot@nwmissouri.edu",
+        "first_name": "Charles",
+        "last_name": "Hoot",
+        "Password": "password",
+        "role": "instructor",
+        "is_active": false,
+        "last_login": "2019-06-19T03:00:19",
+        "created_at": "2019-06-18T04:00:19",
+        "updated_at": "2019-06-18T04:00:19"
+      },
+      {
+        "email_id": "dcase@nwmissouri.edu",
+        "first_name": "Denise",
+        "last_name": "Case",
+        "Password": "password",
+        "role": "instructor",
+        "is_active": false,
+        "last_login": "2019-06-19T03:00:20",
+        "created_at": "2019-06-18T04:00:20",
+        "updated_at": "2019-06-18T04:00:20"
+      }
+   
+   ]
