@@ -1,0 +1,26 @@
+[
+    {
+      "codewordset":"Large set",
+      "created_by":"S533943@nwmissouri.edu",
+      "is_admin": true,
+      "is_locked": true,
+      "created_at":"2019-06-15T02:00:00",
+      "updated_at":"2019-06-15T02:00:00"
+    },
+    {
+      "codewordset":"Small set",
+      "created_by":"S533943@nwmissouri.edu",
+      "is_admin": true,
+      "is_locked": true,
+      "created_at":"2019-06-15T02:00:00",
+      "updated_at":"2019-06-15T02:00:00"
+    },
+    {
+      "codewordset":"Adb set",
+      "created_by":"admin",
+      "is_admin": false,
+      "is_locked": false,
+      "created_at":"2019-06-15T02:00:00",
+      "updated_at":"2019-06-15T02:00:00"
+    }
+]
