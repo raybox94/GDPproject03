@@ -1,0 +1,686 @@
+[
+    {
+      "email_id": "s531519@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": "APPLE",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s530742@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": "BEARCAT",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531495@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": "CLEAN",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531367@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": "DONKEY",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531496@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": "ELEPHANT",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531369@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": "CHAIN",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531499@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": "GIRAFFE",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531500@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": "HORSE",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531372@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": "INDEX",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s530473@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": "JACKEL",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531439@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": "KANGAROO",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531503@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": "LLAMA",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531373@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": "MOOSE",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531507@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": "ISSUE",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531508@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": "OSTRICH",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531382@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": "PUPPY",
+      "is_revealed": true
+    },
+    {
+      "email_id": "mwoolery@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": "PAPER",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531383@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": "ROOSTER",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531384@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": "STARFISH",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531519@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": "TIGER",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s530742@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": "AUSTRALIA",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531495@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": "AUSTRIA",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531367@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " PROGRESSIVE",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531496@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " CREVICE",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531369@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " DANGER",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531499@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " JUSTICE",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531500@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": "ACQUISITION",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531372@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " REACTION",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s530473@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " FLOWER",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531439@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " ROUTINE",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531503@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " LEADERSHIP",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531373@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " COMMUNIST",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531507@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " MEADOW",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531508@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " PROVINCIAL",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531382@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " FOLK MUSIC",
+      "is_revealed": false
+    },
+    {
+      "email_id": "mwoolery@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " TREATY",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531383@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " DEFINITE",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531384@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " THEORIST",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531519@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " SYSTEM",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s530742@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " OUTPUT",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531495@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " UNCERTAINTY",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531367@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " NEGLIGENCE",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531496@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " REASON",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531369@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " SCREAM",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531499@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " MUTTER",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531500@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " CONTRAST",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531372@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " PHYSICS",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s530473@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " ASTONISHING",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531439@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " EMBARK",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531503@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " INTERVENTION",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531373@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " FLOURISH",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531507@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " EAVESDROP",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531508@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " DOMESTIC",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531382@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " SUNRISE",
+      "is_revealed": false
+    },
+    {
+      "email_id": "mwoolery@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " DRESSING",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531383@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " EXCLUSIVE",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531384@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " UNANIMOUS",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531519@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " LADDER",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s530742@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " MARBLE",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531495@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " FREEZE",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531367@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " CAPITAL",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531496@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " CRIMINAL",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531369@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " EXAMPLE",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531499@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " ENTHUSIASM",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531500@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " ADVENTURE",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531372@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " EXCEPTION",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s530473@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " DEVOTE",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531439@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " DEPUTY",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531503@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " BISHOP",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531373@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " INFLATION",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531507@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " EARTHFLAX",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531508@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " DOUBLE",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531382@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " WELCOME",
+      "is_revealed": false
+    },
+    {
+      "email_id": "mwoolery@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " CUSTODY",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531383@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " AFFECT",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531384@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " LIBERTY",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531519@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " CLASSROOM",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s530742@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " PASSION",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531495@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " DECREASE",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531367@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " ANALYSIS",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531496@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " FIRST-HAND",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531369@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " DEPARTURE",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531499@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " SKETCH",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531500@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " NATIONALIST",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531372@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " PROFILE",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s530473@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " LIMITED",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531439@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " DEPART",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531503@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " SALMON",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531373@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " COMMAND",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531507@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " DISAGREEMENT",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531508@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " VOYAGE",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531382@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " SECOND",
+      "is_revealed": false
+    },
+    {
+      "email_id": "mwoolery@nwmissouri.edu",
+      "course_name": "Android",
+      "codeword": " MISCARRIAGE",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531383@nwmissouri.edu",
+      "course_name": "ADB",
+      "codeword": "LIGHT",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531384@nwmissouri.edu",
+      "course_name": "ADB",
+      "codeword": "MILKY",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531519@nwmissouri.edu",
+      "course_name": "ADB",
+      "codeword": "MUMBAI",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s530742@nwmissouri.edu",
+      "course_name": "ADB",
+      "codeword": "MONEY",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531495@nwmissouri.edu",
+      "course_name": "ADB",
+      "codeword": "MARKET",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531367@nwmissouri.edu",
+      "course_name": "ADB",
+      "codeword": "NATIVE",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531496@nwmissouri.edu",
+      "course_name": "ADB",
+      "codeword": "NATION",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531369@nwmissouri.edu",
+      "course_name": "ADB",
+      "codeword": "NOVEMBER",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531499@nwmissouri.edu",
+      "course_name": "ADB",
+      "codeword": "NICKEL",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531500@nwmissouri.edu",
+      "course_name": "ADB",
+      "codeword": "OBJECT",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531372@nwmissouri.edu",
+      "course_name": "ADB",
+      "codeword": "OPTION",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s530473@nwmissouri.edu",
+      "course_name": "ADB",
+      "codeword": "ONION",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531439@nwmissouri.edu",
+      "course_name": "ADB",
+      "codeword": "ORANGE",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531503@nwmissouri.edu",
+      "course_name": "ADB",
+      "codeword": "PARROT",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531373@nwmissouri.edu",
+      "course_name": "ADB",
+      "codeword": "PENCIL",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531507@nwmissouri.edu",
+      "course_name": "ADB",
+      "codeword": "PURPLE",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531508@nwmissouri.edu",
+      "course_name": "ADB",
+      "codeword": "PEACH",
+      "is_revealed": false
+    },
+    {
+      "email_id": "s531382@nwmissouri.edu",
+      "course_name": "ADB",
+      "codeword": "QUICK",
+      "is_revealed": true
+    },
+    {
+      "email_id": "mwoolery@nwmissouri.edu",
+      "course_name": "ADB",
+      "codeword": "QUASAR",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531383@nwmissouri.edu",
+      "course_name": "ADB",
+      "codeword": "QUEST",
+      "is_revealed": true
+    },
+    {
+      "email_id": "s531384@nwmissouri.edu",
+      "course_name": "ADB",
+      "codeword": "ROMANCE",
+      "is_revealed": false
+    }
+   ]
