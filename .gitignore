@@ -1,0 +1,32 @@
+source_code/backend/node_modules/
+source_code/frontend/node_modules
+.vscode
+.idea
+source_code/backend/.env
+source_code/backend/logs/
+
+source_code/frontend/package-lock.json
+source_code/backend/package-lock.json
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+source_code/frontend/node_modules
+source_code/frontend/.pnp
+source_code/frontend/.pnp.js
+
+# testing
+source_code/frontend/coverage
+
+# production
+source_code/frontend/build
+
+# misc
+source_code/frontend/.DS_Store
+source_code/frontend/.env.local
+source_code/frontend/.env.development.local
+source_code/frontend/.env.test.local
+source_code/frontend/.env.production.local
+
+source_code/frontend/npm-debug.log*
+source_code/frontend/yarn-debug.log*
+source_code/frontend/yarn-error.log*
