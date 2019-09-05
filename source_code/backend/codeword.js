@@ -4,8 +4,6 @@ var cors = require('cors');
 var register= require('./DB_Operations/register');
 require('./config/database');
 //const formidable = require('express-formidable');
-var userRouter = require('./routes/user.route');
-var authRouter = require('./routes/auth.route')
 require('dotenv').config();
 var app = express();
 var router = express.Router();
@@ -37,8 +35,6 @@ app.get("/",function(req,res){
 
 router.post('/codeword/api/v1/signup', usersController.signUp);
 router.post('/codeword/api/v1/signin', usersController.signIn);
-app.use('/codeword/api/v1/dashboard', userRouter);
-app.use('/codeword/api/v1/auth', authRouter)
 
 
 module.exports = app;
