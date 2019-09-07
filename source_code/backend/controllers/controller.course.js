@@ -15,13 +15,13 @@ const saveCourseData = (students, req, res) => {
     //var body = req.
     console.log(body)
 
-
+    codewordArray = body.codewords.split(',')
     var courseModel = new CourseModel({
         courseNameKey: body.courseNameKey,
         students: students,
         codewordSet: 
         { codewordSetName: body.codeWordSetName,
-          codewords: body.codewords
+          codewords: codewordArray
         }, 
         Startdate: body.startDate,
         Startdate: body.startDate,
