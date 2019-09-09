@@ -60,3 +60,18 @@ var signIn = (req,res) => {
     })
 }
 module.exports.signIn = signIn;
+
+var details = (req,res) => {    
+    console.log('email'+ req.session.id);
+    UserModel.findOne({_id: req.session.id}).then((user) => {
+    if(!user){
+        return  res.status(400).send("User details not found!!");
+    }
+    console.log('user'+user);        
+    return res.send({email_id: user.email_id, 
+        name: user.first_name + ' '+ user.last_name, 
+        role:user.role});
+    });
+}
+
+module.exports.details = details;
