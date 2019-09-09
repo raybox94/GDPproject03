@@ -40,3 +40,21 @@ export default function StudentDashboard() {
     }
 
 }//Intialize the student dashboard properties and components.
+function a11yProps(index) {
+    return {
+        id: `simple-tab-${index}`,
+        'aria-controls': `simple-tabpanel-${index}`,
+    };
+} // set value for all properties 
+const handleChange = (event, newValue) => {
+    setValue(newValue);
+} // set values for change events.
+
+
+const handleClickOpen = () => {
+    setOpen(true)
+} // set values for open events.
+
+const handleClose = value => {
+    setOpen(false)
+}; // set values for close events.
