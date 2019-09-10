@@ -17,4 +17,12 @@ import {withRouter} from 'react-router-dom'
       }
     }
     
+  
+  async getData(){
+        console.log('getdata')
+        const headers = {
+            'Content-Type': 'application/json',
+            'token':  this.state.token
+          };
+  
 }
