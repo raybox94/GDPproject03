@@ -25,4 +25,28 @@ import {withRouter} from 'react-router-dom'
             'token':  this.state.token
           };
   
+   console.log(headers)
+         try {
+            const response = await API.get('dashboard/details', {headers});
+            console.log('👉 Returned data in :', response);
+            console.log(response.data)
+            if(response.status == 200){
+            this.setState( {
+              id: response.data.email_id,   
+              role: response.data.role,
+              name: response.data.first_name + ' ' + response.data.last_name
+            })
+            console.log('dashbaord : '+ this.state.role)
+            
+        }else {
+        
+        }
+          } catch (e) {
+            console.log(`😱 Axios request failed: ${e}`);
+          }
+      //  }
+    
+    }
+   
+   
 }
