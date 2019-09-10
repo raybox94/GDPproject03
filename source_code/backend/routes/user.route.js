@@ -12,5 +12,6 @@ router.get('/', function(req, res, next) {
   res.json('codeword')
 });
 
+router.get('/getCourseList', courseController.getCourses)
 
 module.exports = router;
