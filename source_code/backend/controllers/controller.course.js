@@ -87,3 +87,18 @@ let addCourse = (req, res) => {
 
 }
 module.exports.addCourse = addCourse;
+
+let getCourses = (req, res, next) => {
+    // CourseModel.find({ emailKey: req.session.email }, function (err, courses) {
+    CourseModel.find({ createdBy: req.session.email }, function (err, courses) {
+        // if (courses)
+        //     return res.json({ code: 200, data: courses });
+        console.log(courses)
+        // req.courses = courses;
+        return res.json({ code: 200, data: courses });
+        //  next();
+    }).catch((e) => {
+        return res.json({ code: 400, message: e });
+    })
+}
+module.exports.getCourses = getCourses;
