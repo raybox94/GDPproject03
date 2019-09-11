@@ -16,6 +16,24 @@ import red from '@material-ui/core/colors/red';
 import Button from '@material-ui/core/Button';
 import PersonIcon from '@material-ui/icons/Person';
 
+const useStyles = makeStyles(theme => ({
+    root: {
+      flexGrow: 1,
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+    title: {
+      flexGrow: 1,
+    },
+    palette: {
+      primary: red[500],
+      secondary: red[500],
+    },
+  
+  }));
+
+
 const NavBar = (props) => {
     const classes = useStyles();
     const [auth, setAuth] = React.useState(true);
