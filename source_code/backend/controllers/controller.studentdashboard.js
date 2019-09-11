@@ -28,3 +28,17 @@ let updateACK = (req, res) => {
         return res.send(course);
     });
 }
+let countACK = (req, res) => {
+    console.log('coursekey: '+ req.params.CourseNameKey)
+    CourseStudentModel.find({ CourseNameKey: req.params.CourseNameKey }, function (err, resp) {
+
+        if (err) { res.send(err) }
+
+
+        return res.send(resp);
+
+    })
+}
+module.exports.updateACK = updateACK;
+module.exports.countACK = countACK;
+module.exports.getstudentDetails = getstudentDetails;
