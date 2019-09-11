@@ -150,3 +150,42 @@ useEffect(() => {
     })
    
 }, [])
+const listCourses = courseData.map((course) => {
+    return <Card id={course.id}
+        courseName={course.courseName}
+        ack={course.ack}
+        startDate={course.startDate}
+        endDate={course.endDate}
+        startSurvey={course.startSurvey}
+        endSurvey={course.endSurvey}
+        isAssigned={course.isAssigned}
+        isRevealed = {course.isRevealed}
+        codeword = {course.codeword}
+    ></Card>
+})
+
+return (
+    <div className={classes.root}>
+        <AppBar position="static" className={classes.appBar}>
+            <Tabs variant='fullWidth' centered={true} value={value} onChange={handleChange} aria-label="simple tabs example" >
+                <Tab label="" {...a11yProps(0)} />
+            </Tabs>
+        </AppBar>
+        <TabPanel value={value} index={0}>
+
+            <Grid container spacing={3}>
+
+                {
+                    listCourses
+                }
+
+            </Grid>
+
+        </TabPanel>
+
+
+    </div>
+
+);
+
+}
