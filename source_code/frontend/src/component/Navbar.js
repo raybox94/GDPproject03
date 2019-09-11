@@ -17,9 +17,47 @@ import Button from '@material-ui/core/Button';
 import PersonIcon from '@material-ui/icons/Person';
 
 const NavBar = (props) => {
-
-
-
+    const classes = useStyles();
+    const [auth, setAuth] = React.useState(true);
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+  
+   
+    let logoutButtonElement = null
+    let profileImageButtonElement = null
+    if (props.isLoggedIn) {
+      logoutButtonElement =
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+        > logout </Button>
+  
+        profileImageButtonElement =  <IconButton
+        key="close"
+        aria-label="Close"
+        color="inherit"
+        className={classes.close}
+        onClick={handleClose}
+      >
+        <PersonIcon />
+      </IconButton>
+          }
+          return (
+      <div className={classes.root}>
+  
+            <AppBar position="static">
+              <Toolbar>
+                <Typography variant="h6" className={classes.title}>
+                  Codeword
+            </Typography>
+            {logoutButtonElement}
+            {profileImageButtonElement}
+              </Toolbar>
+            </AppBar>
+          </div>
+          );
 }
 
 export default NavBar;
