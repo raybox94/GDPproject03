@@ -14,6 +14,41 @@ import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button'
 import API from '../../utils/API'
 import Card from './CourseCard'
+
+const useStyles = makeStyles(theme => ({
+    root: {
+        margin: 30,
+        flexGrow: 1,
+        backgroundColor: theme.palette.background.paper,
+    },
+    appBar: {
+        background: green[600]
+    },
+    paper: {
+        paddingBottom: 20
+    },
+    paper2: {
+        padding: 20,
+        margin: 20,
+        background: lightGreen[200]
+    },
+    title: {
+        padding: 10
+    },
+    banner1: {
+        background: lightGreen[200],
+        paddingLeft: 20
+    },
+    banner2: {
+        background: red[200],
+        padding: 10
+
+    },
+    button: {
+        marginBottom: theme.spacing(2)
+    }
+}));
+
  
 export default function StudentDashboard() {
 
