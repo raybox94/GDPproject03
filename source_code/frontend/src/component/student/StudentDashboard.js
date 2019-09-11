@@ -93,3 +93,21 @@ const handleClickOpen = () => {
 const handleClose = value => {
     setOpen(false)
 }; // set values for close events.
+
+const [courseData, setCourseData] = useState([{}])
+useEffect(() => {
+
+    console.log('inside effect')
+    const headers = {
+        'token': sessionStorage.getItem('token')
+    };
+
+    API.get('dashboard/details', { headers: headers }).then(response => {
+        console.log("me***********")
+        
+            return response.data
+        
+        // else{
+        //     return false
+        // }
+    })
