@@ -43,10 +43,24 @@ import {withRouter} from 'react-router-dom'
         }
           } catch (e) {
             console.log(`😱 Axios request failed: ${e}`);
-          }
-      //  }
-    
+          }    
+    }
+   componentDidMount(){
+        this.getData()
+    }
+    render(){
+        const { match, location, history } = this.props;
+    return(
+        <div>
+              <Appbar isLoggedIn = {true}></Appbar> 
+            {this.state.role == 'admin'?
+            <Admin></Admin>:
+            this.state.role == 'instructor'?
+            <Instructor></Instructor>:
+            <Student></Student>}
+        </div>
+    );
     }
    
-   
 }
+export default withRouter(Dashboard);
