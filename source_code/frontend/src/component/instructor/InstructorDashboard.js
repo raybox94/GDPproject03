@@ -65,7 +65,7 @@ export default function InstructorDashboard() {
 
     const [value, setValue] = useState(0);
     const [open, setOpen] = useState(false)
-
+    const [loading, setLoading] = useState(false)
     const classes = useStyles();
     function TabPanel(props) {
         const { children, value, index, ...other } = props;
@@ -125,12 +125,9 @@ export default function InstructorDashboard() {
         setOpenCodeword(false)
     }
 
-
+    
     const listCodewordSet = codewordsetData.map((item) => {
-        return <CodewordsetCard id={item.id}
-            codewordSetName={item.codewordSetName}
-            count={item.count}
-        ></CodewordsetCard>
+        return true
     })
     return (
         <div className={classes.root}>
@@ -140,7 +137,7 @@ export default function InstructorDashboard() {
                     <Tab label="Codeword" {...a11yProps(1)} />
                 </Tabs>
             </AppBar>
-           
+            {loading && <CircularProgress size={68} className={classes.fabProgress} />}
             <TabPanel value={value} index={0}>
 
                 <Button variant="contained" color="primary" className={classes.button} onClick={handleClickOpen}>
