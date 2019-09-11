@@ -17,3 +17,14 @@ let getstudentDetails = (req, res) => {
         return res.send(course);
     });
 }
+let updateACK = (req, res) => {
+
+    CourseStudentModel.findOneAndUpdate({ EmailKey: req.params.emailID, CourseNameKey: req.params.CourseNameKey }, { Acknowledged: true }, function (err, course) {
+        if (err) {
+
+            res.send(err)
+        }
+
+        return res.send(course);
+    });
+}
