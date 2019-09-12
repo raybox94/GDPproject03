@@ -29,4 +29,37 @@ export default function EditCourse(props) {
 
 
 
+    return (
+        <Container component="main" maxWidth="xs">
+             <div className={classes.paper}>
+                <form enctype="multipart/form-data" onSubmit={handleSubmit} className={classes.form} >
+                <TextField className={classes.textField}
+                        variant="outlined"
+                        required
+                        fullWidth
+                        id="courseName"
+                        label="Course Name"
+                        name="courseName"
+                        autoComplete="courseName"
+                        autoFocus
+                        margin="dense"
+                        onChange={handleChange('courseName')}
+                        value={course.courseName}
+                    />
+                    <input
+                        accept=".csv"
+                        className={classes.input}
+                        id="text-button-file"
+                        multiple
+                        type="file"
+                        ref={fileLabel}
+                        onChange={handleFileChange}
+                    /> 
+
+
+
+                </form>
+            </div>
+    </Container>
+    );
 }
