@@ -17,7 +17,7 @@ import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button'
 import AddCourse from './AddCourse'
 import {CircularProgress} from '@material-ui/core'
-import API from '../../utils/API'
+import API from '../../../API.js'
 
 const useStyles = makeStyles(theme => ({
     root: {
