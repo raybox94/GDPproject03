@@ -74,7 +74,7 @@ export default function StudentDashboard() {
         );
     }
 
-}//Intialize the student dashboard properties and components.
+
 function a11yProps(index) {
     return {
         id: `simple-tab-${index}`,

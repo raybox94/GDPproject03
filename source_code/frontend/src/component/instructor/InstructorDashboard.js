@@ -98,7 +98,6 @@ export default function InstructorDashboard() {
     }
     const [render, setRender] = useState(false);
     const [renderCodewordSet, setRenderCodewordSet] = useState(false)
-    const [loading, setLoading] = useState(false)
     const handleChange = (event, newValue) => {
         setValue(newValue);
     }
