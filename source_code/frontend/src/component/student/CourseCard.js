@@ -80,3 +80,14 @@ export default function CourseCard(props) {
         })
 
     }
+    const handleCopy = () => {
+        navigator.permissions.query({name: "clipboard-write"}).then(result => {
+            if (result.state == "granted" || result.state == "prompt") {
+              navigator.clipboard.writeText(codeword)
+              setTooltip("Copied!")
+              setInterval(function(){
+                setTooltip("Copy")
+              }, 2000)
+            }
+          });
+    }
