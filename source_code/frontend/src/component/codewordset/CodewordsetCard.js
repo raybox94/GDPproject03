@@ -49,6 +49,23 @@ const useStyles = makeStyles(theme => ({
 }));
 export default function CourseCard(props) {
 
+    const classes = useStyles();
+    const [state, setState] = useState({
+        role: '',
+        token: sessionStorage.getItem('token')
+    })
+
+
+    const [redirect, setRedirect] = useState(false);
+    const handleCardClick = () => {
+        console.log('click working')
+        setRedirect(true)
+
+    }
+    if (redirect) {
+        history.push('/codewordset'+props.id)
+        return <Redirect to={'/codewordset/' + props.id}></Redirect>
+    }
 
     return (
 
