@@ -49,4 +49,34 @@ const useStyles = makeStyles(theme => ({
     }
 
 }))
+}
+export default function CourseCard(props) {
+    const classes = useStyles();
+    const [reveal, setReveal] = useState(props.isRevealed)
+    const [codeword, setCodeword] = useState(props.codeword)
+    const [tooltip, setTooltip] = useState("Copy")
+    const LightTooltip = withStyles(theme => ({
+        tooltip: {
+          backgroundColor: theme.palette.common.white,
+          color: 'rgba(0, 0, 0, 0.87)',
+          boxShadow: theme.shadows[1],
+          fontSize: 11,
+        },
+      }))(Tooltip);
+
+    const handleClickReveal = () => {
+
+        const headers = {
+            'token': sessionStorage.getItem('token')
+        };
+
+        console.log(props)
+
+        API.post('dashboard/reveal', { courseId: props.id }, { headers: headers }).then(response => {
+            if (response.data.code == 200) {
+                setReveal(true)
+                setCodeword(response.data.codeword)
+            }
+        })
+
     }
