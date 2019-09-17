@@ -91,3 +91,77 @@ export default function CourseCard(props) {
             }
           });
     }
+    return (
+
+        <Grid item xs={12} sm={3} md={3} lg={3}>
+
+            <Paper className={classes.paper}>
+
+                <div className={classes.appBar}>
+                    <AppBar position="static" className={classes.appBar}>
+                        {
+                        <LightTooltip title={props.courseName} placement="top-start">
+                        <Typography noWrap variant="h6" className={classes.title}>
+                            {props.courseName} 
+                        </Typography>
+                        </LightTooltip>
+                        }
+                    </AppBar>
+                </div>
+
+                <Paper className={classes.paper2}>
+                    {!reveal ?
+                        <Grid container justify="center">
+                            <Zoom in={!reveal}>
+                                <Button variant="contained" color="primary" className={classes.revealButton} onClick={handleClickReveal}>
+                                    Reveal
+                </Button>
+                            </Zoom>
+                        </Grid> :
+                        <Grid container justify="center">
+                            <Zoom in={reveal}>
+
+                                <Typography variant="h6" className={classes.codeword}>
+                                    {codeword
+                                    }
+                                </Typography>
+
+                            </Zoom>
+                            <Tooltip title={tooltip}>
+                                <IconButton className={classes.button} onClick={handleCopy} aria-label="Copy">
+                                    <FileCopyIcon />
+                                </IconButton>
+                            </Tooltip>
+                        </Grid>
+                    }
+                </Paper>
+                {(props.startSurvey != 'Unpublished' || props.endSurvey != 'Unpublished') &&
+                <Paper className={classes.survey}>
+              <Box display="flex" justifyContent="space-between">
+                        { props.startSurvey != 'Unpublished'?
+                       <Box display="flex" >
+                        <Link onClick={event => event.stopPropagation()} target="_blank" href={props.startSurvey} variant="body2" className={classes.startSurvey}>
+                         Start Survey
+                      </Link>
+                      </Box>
+                        :false
+                        }
+                        { props.endSurvey != 'Unpublished'?
+                     <Box display="flex" >
+                        <Link onClick={event => event.stopPropagation()} target="_blank" href={props.endSurvey} variant="body2" className={classes.link}>
+                         End Survey
+                      </Link>
+                   </Box>
+                        :false
+                        }
+                     
+                     </Box>
+                    </Paper>
+                }
+            </Paper>
+                    
+        </Grid>
+
+    );
+
+}
