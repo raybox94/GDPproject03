@@ -198,3 +198,204 @@ export default function AddCodewordSet(props) {
     AddCodewordSet.propTypes = {
         onClose: PropTypes.func.isRequired
     };
+    return (
+        <Container component="main" maxWidth="sm">
+            <CssBaseline />
+
+
+            <form enctype="multipart/form-data" onSubmit={handleSubmit} className={classes.form} >
+                <div className={classes.paper}>
+                    <TextField className={classes.textField}
+                        variant="outlined"
+                        required
+                        fullWidth
+                        id="codewordSetName"
+                        label="Codeword Set Name"
+                        name="codewordSetName"
+                        autoFocus
+                        margin="dense"
+                        onChange={handleChange('codewordSetName')}
+                        value={state.codewordSetName}
+                    />
+                    <input
+                        accept=".txt,.csv"
+                        className={classes.input}
+                        id="text-button-file"
+                        multiple
+                        type="file"
+                        ref={fileLabel}
+                        onChange={handleFileChange}
+                    />
+                    <label htmlFor="text-button-file">
+                        <Grid container spacing={1}>
+                            <Grid item xs={8} sm={8} md={8} lg={8}>
+                                <TextField fullWidth="true" className={classes.textField}
+                                    id="filename"
+                                    name="filename"
+                                    disabled="true"
+                                    margin="dense"
+                                    value={state.filename}
+                                />
+                            </Grid>
+                            <Grid item xs={4} sm={4} md={4} lg={4}>
+                                <Button variant="contained" component="span" color="primary" className={classes.button}>
+                                    Upload
+                                    <CloudUploadIcon className={classes.rightIcon} />
+                                </Button>
+                            </Grid>
+                        </Grid>
+
+                    </label>
+
+                  
+                </div>
+                <Grid container className={classes.chipContainer}>
+                       { (hardRuleData.duplicates.length > 0) &&
+                       <Grid item>
+                        <Chip
+                            label={'No. of duplicate: ' + hardRuleData.duplicates.length}
+                            size="small"
+                            className={classes.chip}
+                            color="primary"
+                            variant="outlined"
+                        /> 
+                        </Grid>
+                       }
+                       { (hardRuleData.lessThanThree.length > 0) &&
+                        <Grid item>
+                        <Chip
+                            label={'Less than 3 letters: ' + hardRuleData.lessThanThree.length}
+                            size="small"
+                            className={classes.chip}
+                            color="primary"
+                            variant="outlined"
+                        /> 
+                        </Grid>
+                       } 
+                       { (hardRuleData.invalidCodewords.length > 0) &&
+                        <Grid item>
+                        <Chip
+                            label={'Invalid Codewords: ' + hardRuleData.invalidCodewords.length}
+                            size="small"
+                            className={classes.chip}
+                            color="primary"
+                            variant="outlined"
+                        /> 
+                        </Grid>
+                       } 
+                       </Grid>
+                <Box display="flex" justifyContent="flex-end">
+                   
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        size="large"
+                        className={classes.cancel}
+                        onClick={handleClose}
+                    >
+                        Cancel
+          </Button>
+
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        size="large"
+                        className={classes.submit}
+                    >
+                        Add
+          </Button>
+
+                </Box>
+
+               
+            </form>
+
+            <Dialog
+           fullWidth={true} 
+        open={openReport}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-slide-title"
+        aria-describedby="alert-dialog-slide-description"
+      >
+        <DialogTitle id="alert-dialog-slide-title">{"Report"}</DialogTitle>
+        <Divider />
+        <DialogContent>
+          <DialogContentText id="alert-dialog-slide-description">
+            Duplicate Codewords: {hardRuleData.duplicates.length}
+            </DialogContentText>
+            <Grid container >
+           { hardRuleData.duplicates.map((item)=>{
+                   return  <Typography component="div">
+                    <Box fontSize="caption.fontSize" fontWeight="fontWeightBold" m={1}>
+                        {item}
+                    </Box>
+                </Typography>
+                })
+            }
+          </Grid>
+    
+          <DialogContentText id="alert-dialog-slide-description">
+            Codewords with less than three letters: {hardRuleData.lessThanThree.length}
+            </DialogContentText>
+            <Grid container >
+            {
+                hardRuleData.lessThanThree.map((item)=>{
+                   return <Typography component="div">
+                    <Box fontSize="caption.fontSize" fontWeight="fontWeightBold" m={1}>
+                        {item}
+                    </Box>
+                </Typography>
+                })
+            }
+            </Grid>
+        
+            <DialogContentText id="alert-dialog-slide-description">
+            Invalid codewords: {hardRuleData.invalidCodewords.length}
+            </DialogContentText>
+            <Grid container >
+            { hardRuleData.invalidCodewords.map((item)=>{
+                   return  <Typography component="div">
+                    <Box fontSize="caption.fontSize" fontWeight="fontWeightBold" m={1}>
+                        {item}
+                    </Box>
+                </Typography>
+                })
+            }
+           </Grid>
+           
+        </DialogContent>
+        <Divider />
+        <DialogActions>
+          <Button onClick={handleReportClose} color="primary">
+            OK
+          </Button>
+        </DialogActions>
+      </Dialog>
+            <Snackbar
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                }}
+                open={state.status}
+                autoHideDuration={2000}
+                variant="success"
+                onClose={handleMessageClose}
+                message={state.message}
+                action={[
+                    <IconButton
+                        key="close"
+                        aria-label="Close"
+                        color="inherit"
+                        className={classes.close}
+                        onClick={handleMessageClose}
+                    >
+                        <CloseIcon />
+                    </IconButton>,
+                ]}
+            ></Snackbar>
+        </Container>
+    );
+}
