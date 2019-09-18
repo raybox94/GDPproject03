@@ -1,6 +1,6 @@
 import Typography from '@material-ui/core/Typography';
 import React, {useState, Component} from 'react';
-import API from "../utils/API";
+import API from "../../utils/API";
 import Admin from './admin/AdminDashboard'
 import Student from './student/StudentDashboard'
 import Instructor from './instructor/InstructorDashboard'

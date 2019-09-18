@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { green, lightGreen, grey } from '@material-ui/core/colors';
 import { Paper, Grid, Button, Zoom, IconButton, Tooltip, Box, Link} from '@material-ui/core';
 import { withRouter } from 'react-router-dom'
-import API from '../../utils/API'
+import API from '../../../utils/API'
 import { makeStyles } from '@material-ui/core/styles';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import { Redirect } from "react-router-dom";
@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
     }
 
 }))
-}
+
 export default function CourseCard(props) {
     const classes = useStyles();
     const [reveal, setReveal] = useState(props.isRevealed)
