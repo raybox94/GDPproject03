@@ -94,6 +94,8 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(1),
         borderRadius: 5
     }
+}));
+
 export default function AddCodewordSet(props) {
     const classes = useStyles();
     const [state, setState] = useState({
@@ -118,6 +120,7 @@ export default function AddCodewordSet(props) {
         filteredData: [],
         invalidCodewords: []
     })
+
     const Transition = React.forwardRef(function Transition(props, ref) {
         return <Slide direction="up" ref={ref} {...props} />;
       });
@@ -294,6 +297,7 @@ export default function AddCodewordSet(props) {
     AddCodewordSet.propTypes = {
         onClose: PropTypes.func.isRequired
     };
+
     return (
         <Container component="main" maxWidth="sm">
             <CssBaseline />
