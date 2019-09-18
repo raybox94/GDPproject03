@@ -12,7 +12,7 @@ import { Paper, Grid } from '@material-ui/core';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button'
-import API from '../../../utils/API'
+import API from '../../utils/API'
 import Card from './CourseCard'
 
 const useStyles = makeStyles(theme => ({

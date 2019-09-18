@@ -12,8 +12,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
-import API from "../../utils/API";
-import FormValidator from '../../utils/FormValidator'
+import API from "../utils/API";
+import FormValidator from '../utils/FormValidator'
 import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom"
 import Login from './Login'
 import Snackbar from '@material-ui/core/Snackbar';
