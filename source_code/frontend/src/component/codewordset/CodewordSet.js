@@ -100,6 +100,60 @@ const useStyles = makeStyles(theme => ({
         "&:hover": {
             backgroundColor: "green"
         }
+    },
+        edit: {
+        background: green[400],
+        margin: theme.spacing(1),
+        color: grey[900]
+    },
+    delete: {
+        margin: theme.spacing(1),
+        background: red[700],
+        "&:hover": {
+            backgroundColor: red[600]
+        }
+    },
+    report: {
+        margin: theme.spacing(5),
+        background: lightGreen[100],
+
+    },
+    iconButton:{
+        background: grey[300],
+        margin: theme.spacing(1),
+        color: grey[900]
+    },
+    iconButtonDelete:{
+        background: grey[300],
+        margin: theme.spacing(1),
+        color: red[900]
+    },
+    appBar: {
+        borderRadius: 5,
+        background: green[600]
+    },
+    paper: {
+        borderRadius: 5,
+        paddingBottom: 20
+    },
+    paper2: {
+        padding: 10,
+        margin: 10,
+        background: lightGreen[200]
+    },
+    title: {
+        padding: 10
+    },
+    banner1: {
+        background: lightGreen[200],
+        padding: 5,
+        marginTop: 5
+    },
+    banner2: {
+        background: red[200],
+        padding: 5,
+        marginTop: 5
+
     }
  }));                           
                            
