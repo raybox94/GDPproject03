@@ -60,3 +60,53 @@ const tableIcons = {
     ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
+
+const useStyles = makeStyles(theme => ({
+    root: {
+        marginTop: 20,
+        flexGrow: 1,
+        //  background: theme.palette.background.paper,
+        background: lightGreen[200],
+        minHeight: 500
+
+    },
+    header: {
+        background: green[300],
+        border: 1,
+        borderRadius: 5,
+        minHeight: 40
+
+    },
+    course: {
+        margin: theme.spacing(4),
+        background: grey[100],
+        borderStyle: 'solid',
+        borderWidth: 2,
+        borderColor: grey[400],
+        borderRadius: 10,
+        minHeight: 100,
+        maxWidth: 800,
+        padding: theme.spacing(2)
+    },
+    table: {
+
+        padding: theme.spacing(4),
+        maxWidth: 600
+
+    },
+    assign: {
+        margin: theme.spacing(1),
+        background: lightGreen[500],
+        "&:hover": {
+            backgroundColor: "green"
+        }
+    }
+ }));                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
