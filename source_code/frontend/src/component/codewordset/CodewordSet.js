@@ -228,6 +228,99 @@ export default function CodewordSet(props) {
             })
     }, [render])
     
+	
+	
+	
+    const [redirect, setRedirect] = useState(false);
+    const handleCardClick = () => {
+        console.log('click working')
+        setRedirect(true)
+
+    }
+    if (redirect) {
+        return <Redirect to="/"></Redirect>
+    }
+
+    const handleMessageClose = () => {
+
+        setSnack({
+            message: '',
+            open: false
+        })
+    }
+
+    const checkCodeword = (codeword) => {
+        console.log('check')
+        let codewords = table.data.map((item) => {
+            return item.codeword
+        })
+        console.log(codewords)
+        codewords.push(codeword)
+        console.log(codeword.length)
+        var letters = /[/\s/\t/!@#$%^&*(),.?":;'{}|<>0-9\\\\]/
+        let duplicateWords = codewords.filter((item, index) =>
+            codewords.indexOf(item) !== index
+        )
+        console.log(duplicateWords)
+        if (codeword.length < 3) {
+            return 'Codeword less than 3 letters'
+        }
+
+        else if (codeword.search(letters) != -1) {
+            return 'Codeword contains invalid character'
+        }
+        else if (duplicateWords.length > 0) {
+            return 'Codeword already present'
+        } else {
+            return 'true'
+        }
+
+
+
+    }
+
+    const addCodewordRow = (resolve, newData) => {
+        var data = {
+            id: props.match.params.id,
+            codeword: newData.codeword,
+        }
+        const headers = {
+            'token': sessionStorage.getItem('token')
+        };
+        console.log(newData)
+        var check = checkCodeword(newData.codeword)
+        if (check === 'true') {
+            API.post('dashboard/addcodeword', data, { headers: headers }).then(response => {
+                console.log(response.data)
+                if (response.data.code == 200) {
+                    setSnack({
+                        message: response.data.message,
+                        open: true
+                    })
+                    const data = [...table.data];
+                    data.push(newData);
+                    setTable({ ...table, data });
+                    console.log('render' + render)
+                    setRender(!render)
+                    resolve()
+                } else {
+                    setSnack({
+                        message: response.data.message,
+                        open: true
+                    })
+                    resolve()
+                }
+            })
+        } else {
+            setSnack({
+                open: true,
+                message: check
+            })
+            resolve()
+        }
+    }
+
+	
     }                           
                            
                            
