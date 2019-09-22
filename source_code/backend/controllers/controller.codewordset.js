@@ -127,6 +127,35 @@ let getcodewordset = (req, res) => {
 }
 module.exports.getcodewordset = getcodewordset;
 
+let getacodewordset = (req, res) => {
+    console.log('get codewords')
+
+   
+            Codewordset.findOne({ _id: req.params.id} )
+            .then((codewordSet) => {
+        
+                if (codewordSet){
+                    var data = []
+                   
+                    var data = {
+                        codewordSetName: codewordSet.codewordSetName,
+                        count: codewordSet.codewords.length,
+                        codewords: codewordSet.codewords,
+                        isPublished: codewordSet.isPublished
+                    }
+                
+                return res.json({ code: 200, data:data });
+                }
+                return res.json({ code: 404, message: 'not found' });
+            }).catch((e) => {
+               // console.log(e);
+                return res.json({ code: 400, message: e });
+            })
+     
+
+}
+module.exports.getacodewordset = getacodewordset;
+
 let generateReport = (req, res) =>{
 
     var body = _.pick(req.body,['id','level']);
