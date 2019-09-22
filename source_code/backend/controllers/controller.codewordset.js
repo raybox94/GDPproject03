@@ -68,6 +68,65 @@ let upadatecodewordset = (req, res) => {
 }
 module.exports.upadatecodewordset = upadatecodewordset;
 
+let getcodewordset = (req, res) => {
+    //console.log('get codewords')
+
+    UserModel.find({role: 'admin', email_id:{$ne: req.session.email}}, (error,users)=>{
+        if(!error){
+          let usersEmail = users.map((item)=>{
+               return item.email_id 
+            })
+           
+            Codewordset.find({ createdBy: {$in: usersEmail}, isPublished:true} )
+            .then((codewordSet) => {
+
+                var data = []
+                if (codewordSet.length > 0){
+                   
+                    for(var i in codewordSet){
+                    console.log(codewordSet[i])
+                    data.push({
+                        id: codewordSet[i]._id,
+                        codewordSetName: codewordSet[i].codewordSetName,
+                        count: codewordSet[i].codewords.length,
+                        codewords: codewordSet[i].codewords,
+                        isPublished: codewordSet[i].isPublished
+                    })
+                }
+                }
+                Codewordset.find({createdBy: req.session.email}).then((codewordSet)=>{
+                    if (codewordSet.length > 0){
+                        for(var i in codewordSet){
+                        console.log(codewordSet[i])
+                        data.push({
+                            id: codewordSet[i]._id,
+                            codewordSetName: codewordSet[i].codewordSetName,
+                            count: codewordSet[i].codewords.length,
+                            codewords: codewordSet[i].codewords,
+                            isPublished: codewordSet[i].isPublished
+                        })
+                    }
+                    // console.log('**********get codeword sets')
+                    // console.log(data)
+                    return res.json({ code: 200, data:data, message: true });
+                }
+
+                }).catch((e) => {
+                    console.log(e);
+                    return res.json({ code: 400, message: e });
+                })
+
+               
+            }).catch((e) => {
+                console.log(e);
+                return res.json({ code: 400, message: e });
+            })
+        }
+    })
+
+}
+module.exports.getcodewordset = getcodewordset;
+
 let generateReport = (req, res) =>{
 
     var body = _.pick(req.body,['id','level']);
