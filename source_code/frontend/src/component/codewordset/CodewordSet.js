@@ -157,8 +157,78 @@ const useStyles = makeStyles(theme => ({
     }
  }));                           
                            
+
+export default function CodewordSet(props) {
+    const classes = useStyles();
+	
+    const [state, setState] = useState({
+        id: props.match.params.id,
+        codewordSetName: '',
+    })
+
+    const Transition = React.forwardRef(function Transition(props, ref) {
+        return <Slide direction="up" ref={ref} {...props} />;
+    });
+
+    const [snack, setSnack] = useState({
+        message: '',
+        open: false
+    })
+    const [table, setTable] = useState({
+        columns: [
+            { title: 'Name', field: 'name' },
+            { title: 'Email', field: 'email' }
+        ],
+        data: [],
+    })
+    const [open, setOpen] = useState(false)
+    const [render, setRender] = useState(false)
+    const [disableEdit, setDisableEdit] = useState(false)
+    const [openReport, setOpenReport] = useState(false)
+    const [deleteConfirmation, setDeleteConfirmation] = useState(false)
+    const [loading, setLoading] = useState(false)
                            
-                           
+    useEffect(() => {
+        setLoading(true)
+        const headers = {
+            'token': sessionStorage.getItem('token')
+        };
+        API.get('dashboard/getacodewordset/' + props.match.params.id, { headers: headers }).then(response => {
+            console.log('👉 Returned data in :', response);
+
+            if (response.status == 200) {
+                console.log(response.data)
+                var codewordSet = response.data.data
+                var codewords = codewordSet.codewords.map((item) => {
+                    return { codeword: item }
+                })
+
+                setTable({
+                    columns: [
+                        { title: 'Codeword', field: 'codeword' },
+                    ],
+                    data: codewords
+                })
+
+                setState({
+                    id: codewordSet._id,
+                    codewordSetName: codewordSet.codewordSetName,
+                    count: codewordSet.count,
+                    isPublished: codewordSet.isPublished
+                })
+                console.log(codewordSet)
+                if (codewordSet.isPublished) {
+                    setDisableEdit(true)
+                }
+            }
+            setLoading(false)
+        })
+            .catch(error => {
+                console.log(error)
+            })
+    }, [render])
+    
+    }                           
                            
                            
                            
