@@ -319,6 +319,112 @@ export default function CodewordSet(props) {
             resolve()
         }
     }
+    
+    const updateCourseRow = (resolve, newData, oldData) => {
+        var data = {
+            id: props.match.params.id,
+            newCodeword: newData.codeword,
+            oldCodeword: oldData.codeword,
+        }
+
+        var check = checkCodeword(newData.codeword)
+        if (check === 'true') {
+            const headers = {
+                'token': sessionStorage.getItem('token')
+            };
+            console.log(newData)
+            API.post('dashboard/updatecodeword', data, { headers: headers }).then(response => {
+                console.log(response.data)
+                if (response.data.code == 200) {
+                    setSnack({
+                        message: response.data.message,
+                        open: true
+                    })
+                    const data = [...table.data];
+                    data[data.indexOf(oldData)] = newData;
+                    setTable({ ...table, data });
+                    setRender(!render)
+                    resolve()
+                } else {
+                    setSnack({
+                        message: response.data.message,
+                        open: true
+                    })
+                    resolve()
+                }
+            })
+        } else {
+            setSnack({
+                open: true,
+                message: check
+            })
+            resolve()
+        }
+    }
+
+    const deleteCodewordRow = (resolve, oldData) => {
+        var data = {
+            id: props.match.params.id,
+            codeword: oldData.codeword
+        }
+        const headers = {
+            'token': sessionStorage.getItem('token')
+        };
+        API.post('dashboard/deletecodeword', data, { headers: headers }).then(response => {
+            console.log(response.data)
+            if (response.data.code == 200) {
+                setSnack({
+                    message: response.data.message,
+                    open: true
+                })
+                const data = [...table.data];
+                data.splice(data.indexOf(oldData), 1);
+                setTable({ ...table, data });
+                setRender(!render)
+                resolve();
+            } else {
+                setSnack({
+                    message: response.data.message,
+                    open: true
+                })
+                resolve()
+            }
+        })
+    }
+
+    const handleClickOpen = () => {
+        setOpen(true)
+    }
+
+    const handleClickClose = value => {
+        setOpen(false)
+    };
+
+
+    const handleFinalize = value => {
+
+        const headers = {
+            'token': sessionStorage.getItem('token')
+        };
+        console.log(props.match.params.id)
+        API.post('dashboard/publishCodeworset', { id: props.match.params.id }, { headers: headers }).then(response => {
+
+            if (response.data.code == 200) {
+                setSnack({
+                    open: true,
+                    message: 'Codeword set finalized'
+                })
+                setDisableEdit(true)
+            } else {
+                setSnack({
+                    open: true,
+                    message: response.data.message
+                })
+            }
+        })
+    }
+
+
 
 	
     }                           
