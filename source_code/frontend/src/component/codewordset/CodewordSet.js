@@ -424,6 +424,81 @@ export default function CodewordSet(props) {
         })
     }
 
+     const handleDeleteCodewordset = () => {
+
+        const headers = {
+            'token': sessionStorage.getItem('token')
+        };
+        API.post('dashboard/deleteCodewordset', { id: props.match.params.id }, { headers: headers }).then(response => {
+
+            if (response.data.code == 200) {
+                setSnack({
+                    open: true,
+                    message: response.data.message
+                })
+                setRedirect(true)
+            } else {
+                setSnack({
+                    open: true,
+                    message: response.data.message
+                })
+            }
+        })
+    }
+
+    function SimpleDialog(props) {
+
+        const { data, onClose, open, render } = props;
+
+        const handleClose = (error) => {
+            console.log('render   ' + render)
+            setRender(!render)
+            onClose();
+        }
+
+        function handleListItemClick(value) {
+            onClose(value);
+        }
+
+        return (
+            <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
+                <DialogTitle id="simple-dialog-title">Edit Codeword Set</DialogTitle>
+                <EditCodewordSet data={data} onClose={handleClose}></EditCodewordSet>
+            </Dialog>
+        );
+    }
+
+    SimpleDialog.propTypes = {
+        onClose: PropTypes.func.isRequired,
+        open: PropTypes.bool.isRequired,
+        render: PropTypes.bool.isRequired,
+    };
+
+    const handleReport = () => {
+        // const headers = {
+        //     'token': sessionStorage.getItem('token')
+        // }; 
+        // API.post('dashboard/generateReport', {id: props.match.params.id }, { headers: headers }).then(response => {
+        //     console.log(response.data)       
+        //     if(response.data.code == 200){
+        //                 console.log(response.data.data)
+        //             }
+        // })
+        setOpenReport(true)
+
+    }
+
+    const handleReportClose = () => {
+        setOpenReport(false)
+    }
+
+    const handleDeleteConfirmation = () =>{
+        setDeleteConfirmation(true)
+    }
+    const handleDeleteClose = () =>{
+        setDeleteConfirmation(false)
+        setRender(!render)
+    }
 
 
 	
