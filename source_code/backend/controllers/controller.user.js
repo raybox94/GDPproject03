@@ -134,3 +134,35 @@ var instructorRequest = (req,res) =>{
  }
  
  module.exports.requests = requests
+
+ var acceptRequest = (req,res) =>{
+   
+    var body = _.pick(req.body,['id']);
+    console.log(req.session.id)
+    UserModel.findOne({_id: req.session.id}
+     ,(error, user)=>{
+ 
+         if(error){
+             return  res.status(400).send("Error");
+         }
+         if(user.role != 'admin'){
+         return res.json({ code: 400, message: 'Unauthorized'});
+         }
+         UserModel.updateOne({_id: body.id}, 
+            {
+                $set:{
+                    role: 'instructor',
+                    instructor_role_request: false
+                }
+            }
+            ,(error, users)=>{
+             if(error){
+                return  res.status(400).send("Error");
+             }
+             //console.log(users
+             return res.json({ code: 200, message: true});
+         })
+    })
+ }
+ 
+ module.exports.acceptRequest = acceptRequest
