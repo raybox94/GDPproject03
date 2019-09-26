@@ -75,3 +75,27 @@ var details = (req,res) => {
 }
 
 module.exports.details = details;
+
+var instructorRequest = (req,res) =>{
+    // var body = _.pick(req.body,['studentEmails']);
+    console.log('working request')
+    console.log(req.session.id)
+    UserModel.updateOne({_id: req.session.id}, 
+     {
+         $set:{
+             instructor_role_request: true
+         }
+     }
+     ,(error, user)=>{
+ 
+         if(error){
+             console.log(error)
+             return  res.status(400).send("Error");
+         }
+         return res.json({ code: 200, message: true});
+    })
+     
+ 
+ }
+ 
+ module.exports.instructorRequest = instructorRequest
