@@ -99,3 +99,38 @@ var instructorRequest = (req,res) =>{
  }
  
  module.exports.instructorRequest = instructorRequest
+
+ var requests = (req,res) =>{
+   
+    console.log(req.session.id)
+    UserModel.findOne({_id: req.session.id}
+     ,(error, user)=>{
+ 
+         if(error){
+             return  res.status(400).send("Error");
+         }
+         if(user.role != 'admin'){
+         return res.json({ code: 400, message: 'Unauthorized'});
+         }
+         UserModel.find({instructor_role_request: true, role: 'student'}, (error, users)=>{
+             if(error){
+                return  res.status(400).send("Error");
+             }
+             //console.log(users
+             var data = users.map((user)=>{
+                 return {
+                            id: user._id,
+                            name: user.first_name + ' ' + user.last_name,
+                            email: user.email_id,
+
+                        }
+
+             })
+             return res.json({ code: 200, data:data, message: true});
+         })
+    })
+     
+ 
+ }
+ 
+ module.exports.requests = requests
