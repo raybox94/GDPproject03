@@ -166,3 +166,38 @@ var instructorRequest = (req,res) =>{
  }
  
  module.exports.acceptRequest = acceptRequest
+
+ const resetPassword = (req, res) =>{
+    let body = _.pick(req.body, ['resetToken', 'password'])
+    bcrypt.genSalt(10, (err,salt) => {
+        bcrypt.hash(body.password,salt,(err,hash) => {
+            if(err){
+                res.json({code: 400, message:'Something went wrong'})
+            }
+            UserModel.findOneAndUpdate({
+                resetPasswordToken: body.resetToken,
+                resetPasswordExpires: {$gt: Date.now()}
+            }, 
+            {
+                $set:{
+                    resetPasswordToken: null,
+                    resetPasswordExpires:null,
+                    password: hash
+                }
+            },
+             (error, user)=>{
+            if(error){
+                res.json({code: 400, message:'Something went wrong'})
+            }
+            if(user){
+                res.json({code: 200, message:'Password Reset successfully. You can now login.'})
+            }else{
+                res.json({code: 404, message:'This link is not valid or has already expired.'})
+            }
+        })
+        })
+    })
+   
+}
+
+module.exports.resetPassword = resetPassword
