@@ -1,6 +1,13 @@
+
 var _ = require('lodash');
 var bcrypt = require('bcryptjs');
+var jwt = require('jsonwebtoken');
 var { UserModel } = require('../model/model.user');
+var mailController = require('../config/user.mail.js')
+const crypto = require('crypto');
+require('dotenv').config();
+const nodemailer = require('nodemailer');
+
 
 var signUp = (req,res) => {
     console.log('working')
@@ -17,14 +24,36 @@ var signUp = (req,res) => {
                 last_name: body.lastName.trim(),
                 email_id: body.email,
                 password: body.password,
-                is_active: !body.instructor,
-                role: body.instructor?'instructor':'student',
+                instructor_role_request: body.instructor,
+                role: 'student',
                 create_at: date.toISOString(),
                 updated_at: date.toISOString()
             });
             userModel.save().then((user) => {
-                if(user)
-                return res.json({ code: 200, message: true});           
+                if(user){
+                    var newToken = jwt.sign({email: body.email, id: user.id },'codewordnwmsu',{expiresIn:  10000 * 3000 }).toString();
+                    console.log(newToken)
+                    UserModel.updateOne({emailKey: body.email},
+                        {
+                            $set: 
+                            {
+                                token: newToken,
+                                last_login: new Date()
+
+                            }}, (err) =>{
+                        if(err){
+                            return res.json({ code: 401, message: 'Unable to generate and update Token'});
+                        }
+                    
+                            return res.json({ 
+                                code: 200, 
+                                message: 'Signed up successfully. Redirecting.', 
+                                token: newToken,
+                                role: user.role });
+                            })
+                }
+                
+                          
             }).catch((e) => {
                 console.log(e);
                 return res.json({ code: 400, message: e});        
@@ -33,6 +62,7 @@ var signUp = (req,res) => {
     })
 }
 module.exports.signUp = signUp;
+
 var signIn = (req,res) => {
     console.log('signIn working')
     var body = _.pick(req.body,['email','password']);
@@ -51,7 +81,24 @@ var signIn = (req,res) => {
                     if(err){
                         return res.json({ code: 401, message: 'Unable to generate and update Token'});
                     }
-                    return res.json({ code: 200, message: 'Signed in successfully. Redirecting.', token: newToken, role: User.role });
+                    UserModel.updateOne({email_id: body.email}, 
+                        {
+                            $set: {
+                                last_login: new Date()
+                            }
+                        }, (err, User)=>{
+                        if(err){
+                            return res.json({ code: 401, message: 'Something went wrong'});
+                        }
+                        return res.json({ 
+                            code: 200, 
+                            message: 'Signed in successfully. Redirecting.', 
+                            token: newToken,
+                            firstName: User.first_name,
+                            lastName: User.last_name,
+                            role: User.role });
+                        })
+                   
                 })
             }else{
                 return res.json({ code: 401, message: 'Invalid Password'})
@@ -69,38 +116,63 @@ var details = (req,res) => {
     }
     console.log('user'+user);        
     return res.send({email_id: user.email_id, 
-        name: user.first_name + ' '+ user.last_name, 
-        role:user.role});
+        firstName: user.first_name,
+        lastName: user.last_name, 
+        role:user.role,
+        instructorRequest: user.instructor_role_request,
+        role: user.role
+    });
     });
 }
-
 module.exports.details = details;
 
-var instructorRequest = (req,res) =>{
-    // var body = _.pick(req.body,['studentEmails']);
-    console.log('working request')
-    console.log(req.session.id)
-    UserModel.updateOne({_id: req.session.id}, 
-     {
-         $set:{
-             instructor_role_request: true
-         }
-     }
-     ,(error, user)=>{
- 
-         if(error){
-             console.log(error)
-             return  res.status(400).send("Error");
-         }
-         return res.json({ code: 200, message: true});
+const checkUsers = (req,res) =>{
+    //var body = _.pick(req.body,['email']);
+    console.log('***********DATA************')
+    UserModel.find({role: {$in: ['student', 'instructor']}}, (error, users)=>{
+        if(error){
+            return res.json({ code: 400, message: error}); 
+        }
+        console.log('***********Check Users*********')
+        if(users){
+            var data = users.map((item)=>{
+                return item.email_id
+            })
+            return res.json({ code: 200, data, message: 'User available'});
+        }
+        return res.json({ code: 400, message: 'User not present'}); 
     })
-     
- 
- }
- 
- module.exports.instructorRequest = instructorRequest
 
- var requests = (req,res) =>{
+}
+
+module.exports.checkUsers = checkUsers
+
+var instructorRequest = (req,res) =>{
+   // var body = _.pick(req.body,['studentEmails']);
+   console.log('working request')
+   console.log(req.session.id)
+   UserModel.updateOne({_id: req.session.id}, 
+    {
+        $set:{
+            instructor_role_request: true
+        }
+    }
+    ,(error, user)=>{
+
+        if(error){
+            console.log(error)
+            return  res.status(400).send("Error");
+        }
+        return res.json({ code: 200, message: true});
+   })
+    
+
+}
+
+module.exports.instructorRequest = instructorRequest
+
+
+var requests = (req,res) =>{
    
     console.log(req.session.id)
     UserModel.findOne({_id: req.session.id}
@@ -167,34 +239,211 @@ var instructorRequest = (req,res) =>{
  
  module.exports.acceptRequest = acceptRequest
 
- const resetPassword = (req, res) =>{
+ var declineRequest = (req,res) =>{
+   
+    var body = _.pick(req.body,['id']);
+    console.log(req.session.id)
+    UserModel.findOne({_id: req.session.id}
+     ,(error, user)=>{
+ 
+         if(error){
+             return  res.status(400).send("Error");
+         }
+         if(user.role != 'admin'){
+         return res.json({ code: 400, message: 'Unauthorized'});
+         }
+         UserModel.updateOne({_id: body.id}, 
+            {
+                $set:{
+                    instructor_role_request: false
+                }
+            }
+            ,(error, users)=>{
+             if(error){
+                return  res.status(400).send("Error");
+             }
+             //console.log(users)
+            
+             return res.json({ code: 200,  message: true});
+         })
+    })
+ }
+ 
+ module.exports.declineRequest = declineRequest
+
+ var getAllUsers = (req, res) =>{
+
+    UserModel.findOne({email_id: req.session.email}, (error, user)=>{
+        if(error){
+            return res.json({ code: 400, message: 'Something went wrong'});
+        }
+        if(user.role === 'admin'){
+            UserModel.find({role:{$in:['student', 'instructor']}}, (error, users)=>{
+                if(error){
+                    return res.json({ code: 400, message: 'Something went wrong'});
+                }
+                return res.json({ code: 200, data:users});
+            })
+        }
+        else{
+            return res.json({ code: 400, message: 'Unauthorized'});
+        }
+    })
+ }
+
+ module.exports.getAllUsers = getAllUsers
+
+ var deleteUser = (req, res) =>{
+    var body = _.pick(req.body, ['id'])
+    console.log(body)
+    UserModel.findOne({email_id: req.session.email}, (error, user)=>{
+        if(error){
+            return res.json({ code: 400, message: 'Something went wrong'});
+        }
+        if(user.role === 'admin'){
+            UserModel.deleteOne({_id: body.id}, (error, deletedUsers)=>{
+                if(error){
+                    return res.json({ code: 400, message: 'Something went wrong'});
+                }
+                return res.json({ code: 200, message: 'User deleted successfully'});
+            })
+        }
+        else{
+            return res.json({ code: 400, message: 'Unauthorized'});
+        }
+    })
+ }
+
+ module.exports.deleteUser = deleteUser
+
+
+ const forgotPassword = (req, res) => {
+   
+    if (req.body.email == "") {
+        res.json('email required');
+    }
+
+    const body = _.pick(req.body, ['email'])
+    console.log(body)
+    UserModel.findOne({email_id: body.email}, (error, user)=>{
+        if(error){
+            res.json({code: 400, message:'Some went wrong'});
+        }
+
+        if(user){
+
+            const token = crypto.randomBytes(20).toString('hex'); 
+            console.log(token); 
+            UserModel.updateOne({email_id: body.email},
+                {$set: { 
+                        resetPasswordToken: token,
+                        resetPasswordExpires: Date.now() + 360000
+                        }
+                }, (error, updatedUser) =>{
+                    if(error){
+                        res.json({code: 400, message:'Something went wrong'});
+                    }
+
+                    const transporter = nodemailer.createTransport({
+                        service: 'gmail', 
+                        auth: {
+                                user: 'codeword.group03@gmail.com',
+                                pass: 'Aug@2019'
+                             }
+                    });
+
+                const mailoptions = {
+                    from: 'codeword.group03@gmail.com', 
+                    to: body.email, 
+                    subject: "Link To Reset Password", 
+                    text:'Hi, \n\n'+
+                        'You are receiving this because you(or someone else) have requested the reset'+ 
+                        'of the password for your account.\n\nPlease click on the following link,'+
+                        'or paste this into your browser to complete the process within one hour of' +
+                        ' receiving it:\n\n' + 'https://codeword-group03.herokuapp.com/resetPassword/'+token+'\n\n' + 
+                        'If you did not request this, please ignore this email and your password will remain unchanged.\n\n'+
+                        'Thank you!\n'+
+                        'Team codeword group03'
+                }
+            console.log('sending mail')
+
+                    transporter.sendMail(mailoptions, function (err, response) {
+                        if (err) {
+                            res.json({code: 400, message:err});
+                        } else {
+            
+                            res.json({code: 200, message:'Recovery email sent'});
+                        }
+                })
+            })
+
+        }else{
+        res.json({code: 404, message:'User is not registered'});
+        }
+    })
+}
+
+module.exports.forgotPassword = forgotPassword
+
+
+const resetPassword = (req, res) =>{
     let body = _.pick(req.body, ['resetToken', 'password'])
     bcrypt.genSalt(10, (err,salt) => {
         bcrypt.hash(body.password,salt,(err,hash) => {
+            
             if(err){
                 res.json({code: 400, message:'Something went wrong'})
             }
-            UserModel.findOneAndUpdate({
-                resetPasswordToken: body.resetToken,
-                resetPasswordExpires: {$gt: Date.now()}
-            }, 
-            {
-                $set:{
-                    resetPasswordToken: null,
-                    resetPasswordExpires:null,
-                    password: hash
-                }
-            },
+
+            UserModel.findOne({resetPasswordToken: body.resetToken, 
+              resetPasswordExpires: {$gt: Date.now()}},
              (error, user)=>{
-            if(error){
-                res.json({code: 400, message:'Something went wrong'})
-            }
-            if(user){
-                res.json({code: 200, message:'Password Reset successfully. You can now login.'})
-            }else{
-                res.json({code: 404, message:'This link is not valid or has already expired.'})
-            }
-        })
+                if(error){
+                    res.json({code: 400, message:'Something went wrong'})
+                }
+
+              
+                if(!user){
+                    res.json({code: 404, message:'This link is not valid or has already expired.'})
+                }
+               
+               bcrypt.compare(body.password, user.password, (err, match)=>{
+
+                console.log(match)
+                if(!match){
+                    UserModel.findOneAndUpdate({
+                        resetPasswordToken: body.resetToken,
+                        resetPasswordExpires: {$gt: Date.now()}
+                    }, 
+                    {
+                        $set:{
+                            resetPasswordToken: null,
+                            resetPasswordExpires:null,
+                            password: hash
+                        }
+                    },
+                     (error, user)=>{
+                    if(error){
+                        res.json({code: 400, message:'Something went wrong'})
+                    }
+                    if(user){
+                        res.json({code: 200, message:'Password Reset successfully. You can now login.'})
+                    }else{
+                        res.json({code: 404, message:'This link is not valid or has already expired.'})
+                    }
+                })
+                }else{
+                    res.json({code: 404, message:'Cannot used previous passwords'})
+                }
+
+               })
+                    
+
+                
+
+            })
+         
+
         })
     })
    
