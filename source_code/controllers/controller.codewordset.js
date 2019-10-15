@@ -1,6 +1,23 @@
 const _ = require('lodash');
+const bcrypt = require('bcryptjs');
+var jwt = require('jsonwebtoken');
 var Codewordset = require('../model/model.codewordset');
+var {UserModel} = require('../model/model.user')
+var { mongoose } = require('./../config/database')
+var mailController = require('../config/user.mail.js')
+let xlsx2json = require('xlsx2json'); // added by Ujjawal Kumar
 multer = require('multer')
+const stringSimilarity = require('string-similarity')
+const anagramFinder = require('anagram-finder')
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './data')
+    },
+    filename: function (req, file, cb) {
+        cb(null, 'test.xlsx')
+    }
+})
 
 
 let addcodewordset = (req, res) => {
@@ -73,6 +90,7 @@ let getcodewordset = (req, res) => {
 
     UserModel.find({role: 'admin', email_id:{$ne: req.session.email}}, (error,users)=>{
         if(!error){
+
           let usersEmail = users.map((item)=>{
                return item.email_id 
             })
@@ -90,11 +108,13 @@ let getcodewordset = (req, res) => {
                         codewordSetName: codewordSet[i].codewordSetName,
                         count: codewordSet[i].codewords.length,
                         codewords: codewordSet[i].codewords,
-                        isPublished: codewordSet[i].isPublished
+                        isPublished: codewordSet[i].isPublished,
+                        isAdmin: true
                     })
                 }
                 }
                 Codewordset.find({createdBy: req.session.email}).then((codewordSet)=>{
+                  
                     if (codewordSet.length > 0){
                         for(var i in codewordSet){
                         console.log(codewordSet[i])
@@ -103,14 +123,15 @@ let getcodewordset = (req, res) => {
                             codewordSetName: codewordSet[i].codewordSetName,
                             count: codewordSet[i].codewords.length,
                             codewords: codewordSet[i].codewords,
-                            isPublished: codewordSet[i].isPublished
+                            isPublished: codewordSet[i].isPublished,
+                            isAdmin: false
                         })
                     }
                     // console.log('**********get codeword sets')
                     // console.log(data)
-                    return res.json({ code: 200, data:data, message: true });
+                  
                 }
-
+                    return res.json({ code: 200, data:data, message: true });
                 }).catch((e) => {
                     console.log(e);
                     return res.json({ code: 400, message: e });
@@ -156,7 +177,97 @@ let getacodewordset = (req, res) => {
 }
 module.exports.getacodewordset = getacodewordset;
 
-let generateReport = (req, res) =>{
+
+let addcodeword = (req, res) => {
+   console.log('************add code word**************')
+    var body = _.pick(req.body,['id','codeword']);
+    console.log(body)
+
+    Codewordset.findOne({_id: body.id}, (error, codewordset)=>{
+        if(!error){
+           var newCodeword = codewordset.codewords
+           newCodeword.push(body.codeword)
+           Codewordset.updateOne({_id: body.id}, {
+               $set:{
+                   codewords: newCodeword
+               }
+              
+           }, (error, updatedCodewordSet) => {
+                  if(!error){
+                      console.log(updatedCodewordSet)
+                      return res.json({ code: 200, message: 'Codeword added' });
+                  } 
+
+                  return res.json({ code: 400, message: error });
+        })
+        }
+    })
+ 
+ }
+ module.exports.addcodeword = addcodeword;
+
+ let updatecodeword = (req, res) => {
+    console.log('************update code word**************')
+     var body = _.pick(req.body,['id','newCodeword', 'oldCodeword']);
+     console.log(body)
+ 
+     Codewordset.findOne({_id: body.id}, (error, codewordset)=>{
+         if(!error){
+            var newCodewords = codewordset.codewords.filter((item)=>{
+                if(item != body.oldCodeword){
+                    return item
+                }
+            })
+            newCodewords.push(body.newCodeword)
+            Codewordset.updateOne({_id: body.id}, {
+                $set:{
+                    codewords: newCodewords
+                }
+               
+            }, (error, updatedCodewordSet) => {
+                   if(!error){
+                       console.log(updatedCodewordSet)
+                       return res.json({ code: 200, message: 'Codeword updated' });
+                   } 
+ 
+                   return res.json({ code: 400, message: error });
+         })
+         }
+     })
+  
+  }
+  module.exports.updatecodeword = updatecodeword;
+
+
+  let deletecodeword = (req, res) => {
+    console.log('************delete code word**************')
+     var body = _.pick(req.body,['id','codeword']);
+     console.log(body)
+ 
+     Codewordset.findOne({_id: body.id}, (error, codewordset)=>{
+         if(!error){
+            // var newCodeword = codewordset.codewords
+            // newCodeword.push(body.codeword)
+            Codewordset.updateOne({_id: body.id}, {
+                $pull:{
+                    codewords: body.codeword
+                }
+               
+            }, (error, updatedCodewordSet) => {
+                   if(!error){
+                       console.log(updatedCodewordSet)
+                       return res.json({ code: 200, message: 'Codeword deleted' });
+                   } 
+ 
+                   return res.json({ code: 400, message: error });
+         })
+         }
+     })
+  
+  }
+  module.exports.deletecodeword = deletecodeword;
+
+  let generateReport = (req, res) =>{
 
     var body = _.pick(req.body,['id','level']);
     console.log('********LEVEL**********')
@@ -243,3 +354,59 @@ let generateReport = (req, res) =>{
   }
 
   module.exports.generateReport = generateReport
+
+
+const publishCodeworset = (req, res) =>{
+    var body = _.pick(req.body,['id'])
+    //console.log(body.id)
+    Codewordset.updateOne({_id:body.id}, 
+       { 
+           $set:{
+                    "isPublished": true
+
+                }
+        },
+        (error, updatedCodewordSet)=>{
+        if(error){
+
+            return res.json({ code: 400, message: error });
+        }
+
+        return res.json({ code: 200, message: 'Codeword set finalized' });
+    }
+    )
+}
+module.exports.publishCodeworset = publishCodeworset
+
+const deleteCodewordset = (req, res) =>{
+    var body = _.pick(req.body,['id'])
+    console.log('*************delete codewordset**********')
+    console.log(body.id)
+    Codewordset.findOne({_id:body.id}, (error, codewordset)=>{
+
+        if(codewordset.createdBy != req.session.email){
+            return res.json({ code: 400, message: 'Cannot delete admin codeword set' });
+        }
+        Codewordset.deleteOne({_id:body.id}, 
+            (error, deletedCodewordSet)=>{
+            if(error){
+    
+                return res.json({ code: 400, message: error });
+            }
+    
+            return res.json({ code: 200, message: 'Codeword set deleted' });
+        }
+        )
+    })
+   
+}
+module.exports.deleteCodewordset = deleteCodewordset
+
+const checker = (checkerArray, str) =>{
+    for(var i in checkerArray){
+        if(checkerArray[i] == str){
+            return true
+        }
+    }
+    return false
+}
