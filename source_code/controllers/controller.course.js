@@ -2,7 +2,7 @@
 const _ = require('lodash');
 var { CourseModel } = require('../model/model.course');
 var { UserModel } = require('../model/model.user');
-var CodewordSet = require('../model/model.codewordset');
+var Codewordset = require('../model/model.codewordset');
 const multer = require('multer')
 const csv = require('csvtojson')
 
@@ -13,50 +13,50 @@ var uploadFile = multer(
     })
     .single('file');
 
-// const saveCourseData = (students, invalidRecords, req, res) => {
-//     var body = _.pick(req.body, ['courseNameKey',
-//         'codeWordSetName', 'startDate', 'endDate', 'preSurveyURL', 'postSurveyURL', 'codewords']);
-//     //var body = req.
-//     var codewordSet
-//     console.log(invalidRecords)
-//     if (!body.codeWordSetName || !body.codewords) {
-//         codewordSet = {
-//             codeWordSetName: '',
-//             codewords: []
-//         }
-//     } else {
-//         codewordSet = {
-//             codewordSetName: body.codeWordSetName,
-//             codewords: body.codewords.split(',')
-//         }
-//     }
+const saveCourseData = (students, invalidRecords, req, res) => {
+    var body = _.pick(req.body, ['courseNameKey',
+        'codeWordSetName', 'startDate', 'endDate', 'preSurveyURL', 'postSurveyURL', 'codewords']);
+    //var body = req.
+    var codewordSet
+    console.log(invalidRecords)
+    if (!body.codeWordSetName || !body.codewords) {
+        codewordSet = {
+            codeWordSetName: '',
+            codewords: []
+        }
+    } else {
+        codewordSet = {
+            codewordSetName: body.codeWordSetName,
+            codewords: body.codewords.split(',')
+        }
+    }
 
-//     var courseModel = new CourseModel({
-//         courseNameKey: body.courseNameKey,
-//         students: students,
-//         codewordSet: codewordSet,
-//         Startdate: body.startDate,
-//         Startdate: body.startDate,
-//         isAssigned: false,
-//         createdBy: req.session.email,
-//         Enddate: body.endDate,
-//         PreSurveyURL: body.preSurveyURL,
-//         PostSurveyURL: body.postSurveyURL
-//     });
+    var courseModel = new CourseModel({
+        courseNameKey: body.courseNameKey,
+        students: students,
+        codewordSet: codewordSet,
+        Startdate: body.startDate,
+        Startdate: body.startDate,
+        isAssigned: false,
+        createdBy: req.session.email,
+        Enddate: body.endDate,
+        PreSurveyURL: body.preSurveyURL,
+        PostSurveyURL: body.postSurveyURL
+    });
 
-//     courseModel.save().then((user) => {
-//         if (user)
-//             return res.status(200).json({ code: '200', data: invalidRecords, message: "Course created successfully." });
-//     }).catch((error) => {
-//         console.log(error)
-//         console.log(error.name + ' ' + error.code)
-//         if (error.name == 'MongoError' && error.code == 11000) {
-//             console.log('working')
-//             return res.status(200).json({ code: '403', message: 'There was a duplicate course error' });
-//         }
-//         return res.status(200).json({ data: '400', message: error.message });
-//     })
-// }
+    courseModel.save().then((user) => {
+        if (user)
+            return res.status(200).json({ code: '200', data: invalidRecords, message: "Course created successfully." });
+    }).catch((error) => {
+        console.log(error)
+        console.log(error.name + ' ' + error.code)
+        if (error.name == 'MongoError' && error.code == 11000) {
+            console.log('working')
+            return res.status(200).json({ code: '403', message: 'There was a duplicate course error' });
+        }
+        return res.status(200).json({ data: '400', message: error.message });
+    })
+}
 
 let addCourse = (req, res) => {
 
@@ -73,8 +73,9 @@ let addCourse = (req, res) => {
        }
        )
     }
+    console.log(body)
   var codewordSet = _.pick(body.codewordSet[0], ['codewordSetName', 'codewords'])
-console.log(codewordSet)
+    console.log(codewordSet)
     var courseModel = new CourseModel({
         courseNameKey: body.courseNameKey,
         students: students,
@@ -84,12 +85,10 @@ console.log(codewordSet)
         isAssigned: false,
         createdBy: req.session.email,
         Enddate: body.endDate,
-        PreSurveyURL: body.preSurveyURL,
-        PostSurveyURL: body.postSurveyURL
+        PreSurveyURL: body.preSurveyURL != ''?formatUrl(body.preSurveyURL):'',
+        PostSurveyURL: body.postSurveyURL != ''?formatUrl(body.postSurveyURL):''
     });
    
-
-
     courseModel.save().then((user) => {
         if (user)
             return res.status(200).json({ code: '200', message: "Course created successfully." });
@@ -105,7 +104,16 @@ console.log(codewordSet)
 }
 
 
-
+const formatUrl = (url) =>{
+    
+    var result = url
+    if (!/^https?:\/\//i.test(url)) {
+        result = 'http://' + url;
+    }
+    console.log('format url')
+    console.log(result)
+    return result
+}
 
 const checkInput = (name, email) => {
 
@@ -343,13 +351,20 @@ const updateCourseData = (students, course, req, res) => {
                 codewordSet: course.codewordSet,
                 Startdate: course.Startdate,
                 Enddate: course.Enddate,
-                PreSurveyURL: course.PreSurveyURL,
-                PostSurveyURL: course.PostSurveyURL
+                PreSurveyURL: course.PreSurveyURL != ''? formatUrl(course.PreSurveyURL):'',
+                PostSurveyURL: course.PostSurveyURL != ''? formatUrl(course.PostSurveyURL):''
             }
         }, (error, updatedCourse) => {
-
+            console.log('---------update course error--------')
+            console.log(error)
             if (error) {
-                return res.json({ code: 400, message: err });
+                if(error.code === 11000){
+                    return res.json({ code: 400, message: 'Course name already taken' });
+                }
+                else if(error.name && error.name == 'MongoError'){
+                return res.json({ code: 400, message: error.errmsg });
+                }
+                return res.json({ code: 400, message: 'Something went wrong!' });
             }
             return res.json({ code: 200, message: 'Course updated successfully' })
 
@@ -368,7 +383,10 @@ let updateCourse = (req, res) => {
         console.log('body--------------------------------------------------------------------/n' + body.courseNameKey)
         //var body = req.
         //    console.log(body)
-        CodewordSet.findOne({ codewordSetName: body.codewordSetName }, (error, codewordSet) => {
+
+        var formattedPostSurveyUrl = body.postSurveyURL != ''?formatUrl(body.postSurveyURL):''
+        var formattedPreSurveyUrl = body.preSurveyURL != ''?formatUrl(body.preSurveyURL):''   
+        Codewordset.findOne({ codewordSetName: body.codewordSetName }, (error, codewordSet) => {
             if (error) {
                 return res.json({ code: 400, message: err });
             }
@@ -420,12 +438,12 @@ let updateCourse = (req, res) => {
                     courseData.Enddate = new Date(body.endDate)
                 }
 
-                console.log(course.PreSurveyURL + '!=' + body.preSurveyURL)
-                if (course.PreSurveyURL != body.preSurveyURL) {
-                    courseData.PreSurveyURL = body.preSurveyURL
+                console.log(course.PreSurveyURL + '!=' + formatUrl(body.preSurveyURL))
+                if (course.PreSurveyURL != formattedPreSurveyUrl) {
+                    courseData.PreSurveyURL = formattedPreSurveyUrl
                 }
-                if (course.PostSurveyURL != body.postSurveyURL) {
-                    courseData.PostSurveyURL = body.postSurveyURL
+                if (course.PostSurveyURL != formattedPostSurveyUrl) {
+                    courseData.PostSurveyURL = formattedPostSurveyUrl
                 }
 
                 var studentList = req.file;
