@@ -7,7 +7,26 @@ var mailController = require('../config/user.mail.js')
 const crypto = require('crypto');
 require('dotenv').config();
 const nodemailer = require('nodemailer');
-
+const fs = require('fs')
+var handlebars = require('handlebars');
+var readHTMLFile = function(path, callback) {
+    fs.readFile(path, {encoding: 'utf-8'}, function (err, html) {
+        if (err) {
+            throw err;
+            callback(err);
+        }
+        else {
+            callback(null, html);
+        }
+    });
+};
+const transporter = nodemailer.createTransport({
+    service: 'gmail', 
+    auth: {
+            user: 'codeword.group03@gmail.com',
+            pass: 'Aug@2019'
+         }
+});
 
 var signUp = (req,res) => {
     console.log('working')
@@ -16,14 +35,18 @@ var signUp = (req,res) => {
     // body.token = gen_token;
     var date = new Date()
     console.log("controller signup"+ body.email+" "+body.password+" "+body.instructor);
+    const token = crypto.randomBytes(20).toString('hex'); 
+    console.log(token)
+    console.log(token);
     bcrypt.genSalt(10, (err,salt) => {
         bcrypt.hash(body.password,salt,(err,hash) => {
             body.password = hash;
             var userModel = new UserModel({
                 first_name: body.firstName.trim(),
                 last_name: body.lastName.trim(),
-                email_id: body.email,
+                email_id: body.email.toLowerCase(),
                 password: body.password,
+                emailVerificationToken: token,
                 instructor_role_request: body.instructor,
                 role: 'student',
                 create_at: date.toISOString(),
@@ -31,6 +54,50 @@ var signUp = (req,res) => {
             });
             userModel.save().then((user) => {
                 if(user){
+
+                    readHTMLFile(__dirname + '/resetPassword.html', function(err, html) {
+
+                        console.log( __dirname+'/images/forget_password.png')
+                        var template = handlebars.compile(html);
+                        var replacements = {
+                            username: user.first_name + ' ' + user.last_name,
+                            image1: 'https://i.ibb.co/HF4ZQBF/codeword-favi.png',
+                            url:'https://codeword-group03.herokuapp.com/verifyEmail/'+token,
+                            type: 'Verify Email',
+                            message1: 'There\'s just one more step before you get to the fun part.',
+                            message2: 'Please verify that we have the right email address by clicking on the link below:'
+                       };
+                    const transporter = nodemailer.createTransport({
+                        service: 'gmail', 
+                        auth: {
+                                user: 'codeword.group03@gmail.com',
+                                pass: 'Aug@2019'
+                             }
+                    });
+
+                const mailoptions = {
+                    from: 'codeword.group03@gmail.com', 
+                    to: body.email, 
+                    subject: "Codeword email verification", 
+                    text:'Hi, \n\n'+
+                        'You are receiving this because you(or someone else) have requested the reset'+ 
+                        'of the password for your account.\n\nPlease click on the following link,'+
+                        'or paste this into your browser to complete the process within one hour of' +
+                        ' receiving it:\n\n' + 'https://codeword-group03.herokuapp.com/resetPassword/'+token+'\n\n' + 
+                        'If you did not request this, please ignore this email and your password will remain unchanged.\n\n'+
+                        'Thank you!\n'+
+                        'Team codeword group03',
+                    html: template(replacements)
+                }
+            console.log('sending mail')
+
+                    transporter.sendMail(mailoptions, function (err, response) {
+                        if (err) {
+                            res.json({code: 400, message:err});
+                        } 
+                })
+            })
+
                     var newToken = jwt.sign({email: body.email, id: user.id },'codewordnwmsu',{expiresIn:  10000 * 3000 }).toString();
                     console.log(newToken)
                     UserModel.updateOne({emailKey: body.email},
@@ -47,7 +114,7 @@ var signUp = (req,res) => {
                     
                             return res.json({ 
                                 code: 200, 
-                                message: 'Signed up successfully. Redirecting.', 
+                                message: 'Signed up successfully. Please verify your email before signing in', 
                                 token: newToken,
                                 role: user.role });
                             })
@@ -63,25 +130,67 @@ var signUp = (req,res) => {
 }
 module.exports.signUp = signUp;
 
+const verifyEmail = (req, res) => {
+   console.log('working email verify')
+    let body = _.pick(req.body, ['token', 'password'])
+    console.log(body.token)
+    UserModel.findOne({emailVerificationToken: body.token},
+       (error, user)=>{
+          if(error){
+              res.json({code: 400, message:'Something went wrong'})
+          }
+          console.log(user)
+        if(user){
+
+          UserModel.updateOne({emailVerificationToken: body.token}, 
+            {
+                $set: {
+                    emailVerificationToken: null,
+                    isEmailVerified: true
+                }
+            }, (err, User)=>{
+                if(err){
+                    res.json({code: 400, message:'Something went wrong'})
+                }
+                res.json({code: 200, message:'Email Verified'})
+
+            })
+        }else{
+            res.json({code: 400, message:'invalid code'})
+        }
+
+        }
+    )
+       
+   
+}
+
+module.exports.verifyEmail = verifyEmail
+
 var signIn = (req,res) => {
     console.log('signIn working')
     var body = _.pick(req.body,['email','password']);
     console.log(body.email+"Controller user signin");
-    UserModel.findOne({email_id: body.email}, function (err, User) {
+    var email = body.email.toLowerCase()
+    UserModel.findOne({email_id: email}, function (err, User) {
         if(User == null){
-            return res.json({ code: 401, message: 'Email id not registered!!'});
+            return res.json({ code: 401, message: 'Invalid Email or Password'});
         }
         //console.log(User.role+"Instructor status signIn controller user");
         return bcrypt.compare(body.password,User.password,(err,result) => {
             console.log(result)
             if(result){
-                var newToken = jwt.sign({email: body.email, id: User.id },'codewordnwmsu',{expiresIn:  10000 * 3000 }).toString();
+
+                if(!User.isEmailVerified){
+                    return res.json({ code: 401, message: 'Verify the email before signing in'})
+                }
+                var newToken = jwt.sign({email: email, id: User.id },'codewordnwmsu',{expiresIn:  10000 * 3000 }).toString();
                 console.log(newToken)
-                UserModel.updateOne({emailKey: body.email},{$set: {token: newToken}}, (err) =>{
+                UserModel.updateOne({emailKey: email},{$set: {token: newToken}}, (err) =>{
                     if(err){
                         return res.json({ code: 401, message: 'Unable to generate and update Token'});
                     }
-                    UserModel.updateOne({email_id: body.email}, 
+                    UserModel.updateOne({email_id: email}, 
                         {
                             $set: {
                                 last_login: new Date()
@@ -101,7 +210,7 @@ var signIn = (req,res) => {
                    
                 })
             }else{
-                return res.json({ code: 401, message: 'Invalid Password'})
+                return res.json({ code: 401, message: 'Invalid Email or Password'})
             }
         })
     })
@@ -125,6 +234,42 @@ var details = (req,res) => {
     });
 }
 module.exports.details = details;
+
+var validateEmail = (req, res) => {
+    var body = _.pick(req.body,['email']);
+    console.log(body.email+"controller validateEmail");
+    UserModel.findOne({ emailKey: body.email}).then((user) => {
+        if(!user){
+            return res.json({ code: 400, message: false});
+        }        
+        return new Promise((resolve, err) =>{
+                if(resolve){
+                    return res.json({ code: 200, message: true});
+                }
+                if(err){                    
+                    return res.json({ code: 200, message: false});
+                }
+            });
+        });
+}
+module.exports.validateEmail = validateEmail;
+
+const reset = (req,res) => {
+    UserModel.findOne({emailKey: req.session.username}, function (err, userModel) {
+        if(err) return res.json({ code: 200, message: 'Email id not registered!!'});
+        bcrypt.genSalt(10, (err,salt) => {
+            bcrypt.hash(req.body.password,salt,(err,hash) => {
+                userModel.password = hash
+                userModel.save().then((user) => {
+                    if(user) return res.json({ code: 200, message: true});           
+                }).catch((e) => {
+                    return res.json({ code: 400, message: e});        
+                })
+            })
+        })
+    })
+}
+module.exports.reset = reset
 
 const checkUsers = (req,res) =>{
     //var body = _.pick(req.body,['email']);
@@ -325,7 +470,7 @@ var requests = (req,res) =>{
 
     const body = _.pick(req.body, ['email'])
     console.log(body)
-    UserModel.findOne({email_id: body.email}, (error, user)=>{
+    UserModel.findOne({email_id: body.email.toLowerCase()}, (error, user)=>{
         if(error){
             res.json({code: 400, message:'Some went wrong'});
         }
@@ -343,7 +488,18 @@ var requests = (req,res) =>{
                     if(error){
                         res.json({code: 400, message:'Something went wrong'});
                     }
+                    readHTMLFile(__dirname + '/resetPassword.html', function(err, html) {
 
+                        console.log( __dirname+'/images/forget_password.png')
+                        var template = handlebars.compile(html);
+                        var replacements = {
+                            username: user.first_name + ' ' + user.last_name,
+                            image1: 'https://i.ibb.co/HF4ZQBF/codeword-favi.png',
+                            url:'https://codeword-group03.herokuapp.com/resetPassword/'+token,
+                            type: 'Reset Password',
+                            message1: 'There was a request to change your password!',
+                            message2: 'If did not make this request, just ignore this email. Otherwise, please click the button below to change your password:'
+                       };
                     const transporter = nodemailer.createTransport({
                         service: 'gmail', 
                         auth: {
@@ -363,7 +519,8 @@ var requests = (req,res) =>{
                         ' receiving it:\n\n' + 'https://codeword-group03.herokuapp.com/resetPassword/'+token+'\n\n' + 
                         'If you did not request this, please ignore this email and your password will remain unchanged.\n\n'+
                         'Thank you!\n'+
-                        'Team codeword group03'
+                        'Team codeword group03',
+                    html: template(replacements)
                 }
             console.log('sending mail')
 
@@ -376,11 +533,14 @@ var requests = (req,res) =>{
                         }
                 })
             })
+            })
 
         }else{
         res.json({code: 404, message:'User is not registered'});
         }
+        
     })
+
 }
 
 module.exports.forgotPassword = forgotPassword
