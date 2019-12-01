@@ -1,46 +1,38 @@
-import Typography from '@material-ui/core/Typography';
-import React, { useState, Component, useEffect } from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Appbar from '../MyAppBar'
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import { green, lightGreen, red, grey, orange } from '@material-ui/core/colors';
-import {
-    Paper, Grid, Box, Slide, Button, Container, CssBaseline, Snackbar, CircularProgress,
-    IconButton, Dialog, DialogTitle, DialogActions, DialogContent, DialogContentText, Tooltip
-} from '@material-ui/core';
-import { withRouter } from 'react-router-dom'
-import API from '../../utils/API'
+import { Box, Button, CircularProgress, Container, CssBaseline, Dialog, 
+    DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, 
+    IconButton, Slide, Snackbar, Tooltip } from '@material-ui/core';
+import { green, grey, lightGreen, red } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import { Redirect } from "react-router-dom";
-import MaterialTable from 'material-table';  
-import { forwardRef } from 'react';
-import EditCourse from '../instructor/EditCourse'
-import CloseIcon from '@material-ui/icons/Close';
+import Typography from '@material-ui/core/Typography';
 import AddBox from '@material-ui/icons/AddBox';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowUpward from '@material-ui/icons/ArrowUpward';
 import Check from '@material-ui/icons/Check';
 import ChevronLeft from '@material-ui/icons/ChevronLeft';
 import ChevronRight from '@material-ui/icons/ChevronRight';
 import Clear from '@material-ui/icons/Clear';
+import CloseIcon from '@material-ui/icons/Close';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
-import Edit from '@material-ui/icons/Edit';
+import { default as Edit, default as EditIcon } from '@material-ui/icons/Edit';
 import FilterList from '@material-ui/icons/FilterList';
 import FirstPage from '@material-ui/icons/FirstPage';
 import LastPage from '@material-ui/icons/LastPage';
+import ListAltIcon from '@material-ui/icons/ListAlt';
+import LockIcon from '@material-ui/icons/Lock';
 import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import Report from './Report'
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import LockIcon from '@material-ui/icons/Lock';
-import ListAltIcon from '@material-ui/icons/ListAlt';
-import EditCodewordSet from './EditCodewordSet';
+import MaterialTable from 'material-table';
+import PropTypes from 'prop-types';
+import React, { forwardRef, useEffect, useState } from 'react';
+import { Redirect } from "react-router-dom";
+import history from '../../history';
+import API from '../../utils/API';
 import MyAppBar from '../MyAppBar';
-
+import EditCodewordSet from './EditCodewordSet';
+import Report from './Report';
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
     Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -60,10 +52,10 @@ const tableIcons = {
     ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
-
 const useStyles = makeStyles(theme => ({
     root: {
         marginTop: 20,
+        paddingBottom: theme.spacing(4),
         flexGrow: 1,
         //  background: theme.palette.background.paper,
         background: lightGreen[200],
@@ -101,7 +93,7 @@ const useStyles = makeStyles(theme => ({
             backgroundColor: "green"
         }
     },
-        edit: {
+    edit: {
         background: green[400],
         margin: theme.spacing(1),
         color: grey[900]
@@ -114,16 +106,14 @@ const useStyles = makeStyles(theme => ({
         }
     },
     report: {
-        margin: theme.spacing(5),
-        background: lightGreen[100],
-
+        margin: theme.spacing(2, 0, 0, 0),
     },
-    iconButton:{
+    iconButton: {
         background: grey[300],
         margin: theme.spacing(1),
         color: grey[900]
     },
-    iconButtonDelete:{
+    iconButtonDelete: {
         background: grey[300],
         margin: theme.spacing(1),
         color: red[900]
@@ -155,15 +145,13 @@ const useStyles = makeStyles(theme => ({
         marginTop: 5
 
     }
- }));                           
-                           
-
+}));
 export default function CodewordSet(props) {
     const classes = useStyles();
-	
     const [state, setState] = useState({
         id: props.match.params.id,
         codewordSetName: '',
+
     })
 
     const Transition = React.forwardRef(function Transition(props, ref) {
@@ -187,8 +175,11 @@ export default function CodewordSet(props) {
     const [openReport, setOpenReport] = useState(false)
     const [deleteConfirmation, setDeleteConfirmation] = useState(false)
     const [loading, setLoading] = useState(false)
-                           
+    const [redirect, setRedirect] = useState(false)
+    const [pageSize, setPageSize] = useState(5)
     useEffect(() => {
+        var pageSize = parseInt(sessionStorage.getItem('pageSizeCodewordset', 5))
+        setPageSize(pageSize)
         setLoading(true)
         const headers = {
             'token': sessionStorage.getItem('token')
@@ -227,19 +218,26 @@ export default function CodewordSet(props) {
                 console.log(error)
             })
     }, [render])
-    
-	
-	
-	
-    const [redirect, setRedirect] = useState(false);
+
+    window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+    }
+    useEffect(() => {
+        window.scrollTo(0, 0)
+        // var pageSize = parseInt(sessionStorage.getItem('pageSizeCodewordset', 5))
+        sessionStorage.setItem('pageSizeCodewordset', 5)
+
+        return function cleanup(){
+            sessionStorage.setItem('pageSizeCodewordset', 5)
+        }
+    }, [])
+
     const handleCardClick = () => {
         console.log('click working')
         setRedirect(true)
 
     }
-    if (redirect) {
-        return <Redirect to="/"></Redirect>
-    }
+
 
     const handleMessageClose = () => {
 
@@ -282,13 +280,13 @@ export default function CodewordSet(props) {
     const addCodewordRow = (resolve, newData) => {
         var data = {
             id: props.match.params.id,
-            codeword: newData.codeword,
+            codeword: newData.codeword.trim().toLowerCase(),
         }
         const headers = {
             'token': sessionStorage.getItem('token')
         };
         console.log(newData)
-        var check = checkCodeword(newData.codeword)
+        var check = checkCodeword(data.codeword)
         if (check === 'true') {
             API.post('dashboard/addcodeword', data, { headers: headers }).then(response => {
                 console.log(response.data)
@@ -301,7 +299,7 @@ export default function CodewordSet(props) {
                     data.push(newData);
                     setTable({ ...table, data });
                     console.log('render' + render)
-                    setRender(!render)
+                  //  setRender(!render)
                     resolve()
                 } else {
                     setSnack({
@@ -319,7 +317,7 @@ export default function CodewordSet(props) {
             resolve()
         }
     }
-    
+
     const updateCourseRow = (resolve, newData, oldData) => {
         var data = {
             id: props.match.params.id,
@@ -343,7 +341,7 @@ export default function CodewordSet(props) {
                     const data = [...table.data];
                     data[data.indexOf(oldData)] = newData;
                     setTable({ ...table, data });
-                    setRender(!render)
+                  //  setRender(!render)
                     resolve()
                 } else {
                     setSnack({
@@ -380,7 +378,7 @@ export default function CodewordSet(props) {
                 const data = [...table.data];
                 data.splice(data.indexOf(oldData), 1);
                 setTable({ ...table, data });
-                setRender(!render)
+               // setRender(!render)
                 resolve();
             } else {
                 setSnack({
@@ -424,7 +422,7 @@ export default function CodewordSet(props) {
         })
     }
 
-     const handleDeleteCodewordset = () => {
+    const handleDeleteCodewordset = () => {
 
         const headers = {
             'token': sessionStorage.getItem('token')
@@ -490,134 +488,78 @@ export default function CodewordSet(props) {
 
     const handleReportClose = () => {
         setOpenReport(false)
-    }
-
-    const handleDeleteConfirmation = () =>{
-        setDeleteConfirmation(true)
-    }
-    const handleDeleteClose = () =>{
-        setDeleteConfirmation(false)
         setRender(!render)
     }
 
- const handleDeleteCodewordset = () => {
-
-        const headers = {
-            'token': sessionStorage.getItem('token')
-        };
-        API.post('dashboard/deleteCodewordset', { id: props.match.params.id }, { headers: headers }).then(response => {
-
-            if (response.data.code == 200) {
-                setSnack({
-                    open: true,
-                    message: response.data.message
-                })
-                setRedirect(true)
-            } else {
-                setSnack({
-                    open: true,
-                    message: response.data.message
-                })
-            }
-        })
-    }
-
-    function SimpleDialog(props) {
-
-        const { data, onClose, open, render } = props;
-
-        const handleClose = (error) => {
-            console.log('render   ' + render)
-            setRender(!render)
-            onClose();
-        }
-
-        function handleListItemClick(value) {
-            onClose(value);
-        }
-
-        return (
-            <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
-                <DialogTitle id="simple-dialog-title">Edit Codeword Set</DialogTitle>
-                <EditCodewordSet data={data} onClose={handleClose}></EditCodewordSet>
-            </Dialog>
-        );
-    }
-
-    SimpleDialog.propTypes = {
-        onClose: PropTypes.func.isRequired,
-        open: PropTypes.bool.isRequired,
-        render: PropTypes.bool.isRequired,
-    };
-
-    const handleReport = () => {
-        // const headers = {
-        //     'token': sessionStorage.getItem('token')
-        // }; 
-        // API.post('dashboard/generateReport', {id: props.match.params.id }, { headers: headers }).then(response => {
-        //     console.log(response.data)       
-        //     if(response.data.code == 200){
-        //                 console.log(response.data.data)
-        //             }
-        // })
-        setOpenReport(true)
-
-    }
-
-    const handleReportClose = () => {
-        setOpenReport(false)
-    }
-
-    const handleDeleteConfirmation = () =>{
+    const handleDeleteConfirmation = () => {
         setDeleteConfirmation(true)
     }
-    const handleDeleteClose = () =>{
+    const handleDeleteClose = () => {
         setDeleteConfirmation(false)
-        setRender(!render)
+    }
+
+    const handleBackButton = () => {
+
+        setRedirect(true)
+
+    }
+
+    if (redirect) {
+        history.push('/', { value: 1 })
+        return <Redirect to="/"></Redirect>
     }
 
     return (
         <div>
-            <MyAppBar></MyAppBar>
-        <div>
-            
-            {loading?<Grid container
-            spacing={0}
-            alignItems="center"
-            justify="center"
-            style={{ minHeight: '100vh' }}>
-            <CircularProgress className={classes.progress} />
-        </Grid>
-        :
-            <Container component="main" maxWidth='lg'>
-                <CssBaseline />
-                <div className={classes.root}>
+            <MyAppBar backButton={true} from="codewordset"></MyAppBar>
+            <div>
 
-                    <Box className={classes.header} >
-                        <Grid container >
-                            <Grid item sm={6}>
-                                <Grid container direction="column" >
-                                    <Grid item>
-                                        <Typography component="div">
-                                            <Box fontSize="h6.fontSize" fontWeight="fontWeightBold" m={1}>
-                                                {state.codewordSetName}
+                {loading ? <Grid container
+                    spacing={0}
+                    alignItems="center"
+                    justify="center"
+                    style={{ minHeight: '100vh' }}>
+                    <CircularProgress className={classes.progress} />
+                </Grid>
+                    :
+                    <Container component="main" maxWidth='lg'>
+                        <CssBaseline />
+                        <div className={classes.root}>
+
+                            <Box className={classes.header} >
+                                <Grid container >
+                                    <Grid item sm={6}>
+
+                                        <Box display="flex" flexDirection="row" justifyContent="flex-start">
+                                            {/* <Box p={1}>
+                                                <Tooltip title="Back to dasboard">
+                                                    <IconButton
+                                                        className={classes.backButton}
+                                                        onClick={handleBackButton}
+
+                                                    >
+                                                        <ArrowBackIosIcon fontSize="large" />
+                                                    </IconButton>
+                                                </Tooltip>
+                                            </Box> */}
+                                            <Box p={2}>
+                                                <Typography component="div">
+                                                    <Box fontSize="h6.fontSize" fontWeight="fontWeightBold" m={1}>
+                                                        {state.codewordSetName}
+                                                    </Box>
+                                                </Typography>
                                             </Box>
-                                        </Typography>
+                                        </Box>
+
+
+
                                     </Grid>
-                                    <Grid item>
-                                        <Grid container>
+                                    <Grid item sm={1}>
 
-
-                                        </Grid>
                                     </Grid>
-                                </Grid>
-                            </Grid>
-                            <Grid item sm={1}>
-
-                            </Grid>
-                            <Grid item sm={5}>
-                            <Box display="flex" flexDirection="row" justifyContent="flex-end">
-                                {/* <Button
+                                    <Grid item sm={5}>
+                                        <Box display="flex" flexDirection="row" justifyContent="flex-end">
+                                            {/* <Button
                                     variant="contained"
                                     color="primary"
                                     size="medium"
@@ -628,26 +570,26 @@ export default function CodewordSet(props) {
 
                                     Report
                                 </Button> */}
-                                <Tooltip title="Report">
-                                <IconButton 
-                                    className={classes.iconButton} 
-                                    onClick={handleReport}
-                                    disabled={disableEdit}
-                                    >
-                                    <ListAltIcon fontSize="large"/>
-                                </IconButton>
-                                </Tooltip>
+                                            <Tooltip title="Report">
+                                                <IconButton
+                                                    className={classes.iconButton}
+                                                    onClick={handleReport}
+                                                    disabled={disableEdit}
+                                                >
+                                                    <ListAltIcon fontSize="large" />
+                                                </IconButton>
+                                            </Tooltip>
 
-                                <Tooltip title="Finalize codeword set">
-                                <IconButton 
-                                    className={classes.iconButton} 
-                                    onClick={handleFinalize}
-                                    disabled={disableEdit}
-                                    >
-                                    <LockIcon fontSize="large"/>
-                                </IconButton>
-                                </Tooltip>
-                                {/* <Button
+                                            <Tooltip title="Finalize codeword set">
+                                                <IconButton
+                                                    className={classes.iconButton}
+                                                    onClick={handleFinalize}
+                                                    disabled={disableEdit}
+                                                >
+                                                    <LockIcon fontSize="large" />
+                                                </IconButton>
+                                            </Tooltip>
+                                            {/* <Button
                                     variant="contained"
                                     color="primary"
                                     size="medium"
@@ -658,16 +600,16 @@ export default function CodewordSet(props) {
 
                                     Finalize
                                 </Button> */}
-                                <Tooltip title="Edit codeword set">
-                                <IconButton 
-                                    className={classes.iconButton} 
-                                    onClick={handleClickOpen}
-                                    disabled={disableEdit}
-                                    >
-                                    <EditIcon fontSize="large"/>
-                                </IconButton>
-                                </Tooltip>
-                                {/* <Button
+                                            <Tooltip title="Edit codeword set">
+                                                <IconButton
+                                                    className={classes.iconButton}
+                                                    onClick={handleClickOpen}
+                                                    disabled={disableEdit}
+                                                >
+                                                    <EditIcon fontSize="large" />
+                                                </IconButton>
+                                            </Tooltip>
+                                            {/* <Button
                                     type="submit"
                                     variant="contained"
                                     color="primary"
@@ -678,17 +620,17 @@ export default function CodewordSet(props) {
                                 >
                                     edit
                                 </Button> */}
-                                <SimpleDialog data={state} open={open} onClose={handleClickClose} render={render} />
-                                <Tooltip title="Delete codeword set">
-                                <IconButton 
-                                    className={classes.iconButtonDelete} 
-                                    onClick={handleDeleteConfirmation}
-                                    >
-                                    <DeleteForeverIcon fontSize="large"/>
-                                </IconButton>
-                                </Tooltip>
-                                
-                                {/* <Button
+                                            <SimpleDialog data={state} open={open} onClose={handleClickClose} render={render} />
+                                            <Tooltip title="Delete codeword set">
+                                                <IconButton
+                                                    className={classes.iconButtonDelete}
+                                                    onClick={handleDeleteConfirmation}
+                                                >
+                                                    <DeleteForeverIcon fontSize="large" />
+                                                </IconButton>
+                                            </Tooltip>
+
+                                            {/* <Button
                                     type="submit"
                                     variant="contained"
                                     color="primary"
@@ -697,140 +639,144 @@ export default function CodewordSet(props) {
                                     onClick={handleDeleteConfirmation} >
                                     delete
                                 </Button> */}
-                                </Box>
-                            </Grid>
-                        </Grid>
-                    </Box>
-
-                    <div border={1} className={classes.course}>
-                        <Grid container >
-                            <Grid item sm={6} md={6} lg={6}>
-                                <Grid container direction="column">
-                                    <Grid item xs={12} >
-                                        <Typography component="div">
-                                            <Box fontSize="h6.body" fontWeight="fontWeightBold" m={1}>
-                                                Number of codewords: {state.count}
-                                            </Box>
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item xs={12} >
-                                        <Typography component="div">
-                                            <Box fontSize="h6.body" fontWeight="fontWeightBold" m={1}>
-                                                {state.isPublished}
-                                            </Box>
-                                        </Typography>
+                                        </Box>
                                     </Grid>
                                 </Grid>
-                            </Grid>
+                            </Box>
 
-                        </Grid>
+                            <div border={1} className={classes.course}>
+                                <Grid container >
+                                    <Grid item sm={6} md={6} lg={6}>
+                                        <Grid container direction="column">
+                                            <Grid item xs={12} >
+                                                <Typography component="div">
+                                                    <Box fontSize="h6.body" fontWeight="fontWeightBold" m={1}>
+                                                        Number of codewords: {state.count}
+                                                    </Box>
+                                                </Typography>
+                                            </Grid>
+                                            <Grid item xs={12} >
+                                                <Typography component="div">
+                                                    <Box fontSize="h6.body" fontWeight="fontWeightBold" m={1}>
+                                                        {state.isPublished}
+                                                    </Box>
+                                                </Typography>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
 
-                    </div>
-                    <Grid container>
-                        <Grid item sm={3}></Grid>
-                        <Grid item >
-                            <div className={classes.table}>
-                                <MaterialTable
-                                    icons={tableIcons}
-                                    title="Codewords"
-                                    columns={table.columns}
-                                    data={table.data}
-                                    options={{
-                                        actionsColumnIndex: -1,
-                                        headerStyle: {
-                                            fontSize: 15
-                                        },
-                                        emptyRowsWhenPaging: false,
-                                        exportButton: true,
-                                        exportAllData: true
-                                    }}
-                                    editable={{
-                                        onRowAdd: newData =>
-                                            new Promise(resolve => {
-                                                addCodewordRow(resolve, newData)
+                                </Grid>
 
-                                            }),
-                                        onRowUpdate: (newData, oldData) =>
-                                            new Promise(resolve => {
-                                                updateCourseRow(resolve, newData, oldData)
-
-                                            }),
-                                        onRowDelete: oldData =>
-                                            new Promise(resolve => {
-                                                deleteCodewordRow(resolve, oldData)
-                                            }),
-                                    }}
-
-                                />
                             </div>
-                        </Grid>
-                    </Grid>
-                    <Snackbar
-                        anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'left',
-                        }}
-                        open={snack.open}
-                        autoHideDuration={2000}
-                        variant="success"
-                        onClose={handleMessageClose}
-                        message={snack.message}
-                        action={[
-                            <IconButton
-                                key="close"
-                                aria-label="Close"
-                                color="inherit"
-                                className={classes.close}
-                                onClick={handleMessageClose}
-                            >
-                                <CloseIcon />
-                            </IconButton>,
-                        ]}
-                    ></Snackbar>
-                </div>
+                            <Grid container>
+                                <Grid item sm={3}></Grid>
+                                <Grid item xs={12} sm={6}>
 
-                <Dialog fullScreen={true} disableBackdropClick={true} onClose={handleReportClose} aria-labelledby="simple-dialog-title" open={openReport}>
-                    <div className={classes.report}>
-                        <Box p={2} display="flex" flexDirection="row" justifyContent="center">
-                            <Typography variant="h6">
-                                REPORT
+                                    <MaterialTable
+                                        icons={tableIcons}
+                                        title="Codewords"
+                                        columns={table.columns}
+                                        data={table.data}
+                                        options={{
+                                            actionsColumnIndex: -1,
+                                            headerStyle: {
+                                                fontSize: 15
+                                            },
+                                            pageSize: pageSize,
+                                            emptyRowsWhenPaging: false,
+                                            exportButton: true,
+                                            exportAllData: true
+                                        }}
+                                        editable={{
+                                            onRowAdd: !disableEdit ? newData =>
+                                                new Promise(resolve => {
+                                                    addCodewordRow(resolve, newData)
+
+                                                }) : null,
+                                            onRowUpdate: !disableEdit ? (newData, oldData) =>
+                                                new Promise(resolve => {
+                                                    updateCourseRow(resolve, newData, oldData)
+
+                                                }) : null,
+                                            onRowDelete: !disableEdit ? oldData =>
+                                                new Promise(resolve => {
+                                                    deleteCodewordRow(resolve, oldData)
+                                                }) : null,
+                                        }}
+                                        onChangeRowsPerPage={(pageSize) =>{
+                                            console.log('*******PageSize***********')
+                                            console.log(pageSize)
+                                            sessionStorage.setItem('pageSizeCodewordset', pageSize)
+                                        }}
+                                    />
+
+                                </Grid>
+                            </Grid>
+                            <Snackbar
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                }}
+                                TransitionComponent={Slide}
+                                TransitionProps={
+                                    { direction: "right" }
+                                }
+                                open={snack.open}
+                                autoHideDuration={2000}
+                                variant="success"
+                                onClose={handleMessageClose}
+                                message={snack.message}
+                                action={[
+                                    <IconButton
+                                        key="close"
+                                        aria-label="Close"
+                                        color="inherit"
+                                        className={classes.close}
+                                        onClick={handleMessageClose}
+                                    >
+                                        <CloseIcon />
+                                    </IconButton>,
+                                ]}
+                            ></Snackbar>
+                        </div>
+
+                        <Dialog fullScreen={true} disableBackdropClick={true} onClose={handleReportClose} aria-labelledby="simple-dialog-title" open={openReport} >
+                            <div className={classes.report}>
+                                {/* <Box p={2} display="flex" flexDirection="row" justifyContent="center">
+                                    <Typography variant="h6">
+                                        REPORT
                      </Typography>
 
-                        </Box>
-                        <Report id={props.match.params.id} handleClose={handleReportClose}></Report>
-                    </div>
-                </Dialog>
+                                </Box> */}
+                                <Report id={props.match.params.id} handleClose={handleReportClose}></Report>
+                            </div>
+                        </Dialog>
 
-                <Dialog
-                    open={deleteConfirmation}
-                    onClose={handleDeleteClose}
-                    aria-labelledby="alert-dialog-slide-title"
-                    aria-describedby="alert-dialog-slide-description"
-                >
-                    <DialogTitle id="alert-dialog-slide-title">{"Warning"}</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText id="alert-dialog-slide-description">
-                        Are you sure you want to delete this codeword set?
+                        <Dialog
+                            open={deleteConfirmation}
+                            onClose={handleDeleteClose}
+                            aria-labelledby="alert-dialog-slide-title"
+                            aria-describedby="alert-dialog-slide-description"
+                        >
+                            <DialogTitle id="alert-dialog-slide-title">{"Warning"}</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-slide-description">
+                                    Are you sure you want to delete this codeword set?
                         </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleDeleteClose} color="secondary">
-                            NO
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={handleDeleteClose} color="secondary">
+                                    NO
                          </Button>
-                        <Button onClick={handleDeleteCodewordset} color="primary">
-                            YES
+                                <Button onClick={handleDeleteCodewordset} color="primary">
+                                    YES
                         </Button>
-                    </DialogActions>
-                </Dialog>
-            </Container>
-            }
-        </div>
+                            </DialogActions>
+                        </Dialog>
+                    </Container>
+                }
+            </div>
         </div>
     );
-	
-    }                           
-                           
-                           
-                           
-                           
-                           
+
+}
