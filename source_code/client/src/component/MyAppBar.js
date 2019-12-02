@@ -1,19 +1,20 @@
-import React, { Component } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useEffect, useState } from 'react';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
-import green from '@material-ui/core/colors/green';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import { Redirect } from "react-router-dom"
+import {Link, Grid, Box, Tooltip, Fab} from '@material-ui/core'
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import { green, lightGreen, grey } from '@material-ui/core/colors';
+import {Redirect} from 'react-router-dom'
+import history from '../history'
+import API from '../utils/API'
+import logo from '../static/images/logo_2.png'
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
-const useStyles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
@@ -24,99 +25,237 @@ const useStyles = theme => ({
     flexGrow: 1,
   },
   appBar:{
-      background: green[600]
+    background: green[500]
+  },
+  button:{
+    margin: theme.spacing(0),
+    textTransform: 'none'    
+  },
+  navTool:{
+    margin: theme.spacing(1)
+  },
+  backButton:{   
+   
+    "&:hover": {
+      backgroundColor: green[500]
+  },
+    
   }
-  
-});
+}));
 
+export default function MyAppBar(props) {
 
-class MyAppBar extends Component{
-
-  constructor(props){
-    super(props)
-    this.state = {
-      isLoggedIn:this.props.isLoggedIn,
-      anchorEl:null,
-      logout:false
+  const TitleButton = withStyles(theme => ({
+    root: {
+      backgroundColor: green[500],
+      color: grey[100],
+      fontSize: 20,
+      "&:hover": {
+        backgroundColor: green[500]
     }
-
-  }
-
-render(){
- const {classes} = this.props
-  //const [auth, setAuth] = React.useState(true);
+    },
+  }))(Button);
+  const classes = useStyles();
+  const [disableStudentView, setDisableStudentView] = useState(props.disableStudentView ? true:false)
+  const [logout, setLogout] = useState(false)
+  const [studentView, setStudentView] = useState(false)
+  const [token, setToken] = useState(sessionStorage.getItem('token'))
+  const [isInstructor, setIsInstructor] = useState(false)
+  const [redirect, setRedirect] = useState(false)
+  const [response, setResponse] = useState()
+  const [name, setName] = useState()
+  const [view, setView] = useState()
+  const handleLogout = () =>{
  
+    sessionStorage.clear()
+    setLogout(true)
+  }
 
-  const open = Boolean(this.state.anchorEl); 
+  const handleRedirect = () =>{
+ 
+    setRedirect(true)
+  }
+ const handleStudentView = () =>{
+   setStudentView(true)
+ }
 
+ useEffect(()=>{
+  if(window.innerWidth > 500){
+    setResponse({
+      logoAlignment: 'flex-end',
+    })
+  }else{
+    setResponse({
+      logoAlignment: 'flex-start',
+    })
+  }
+  console.log(token)
+  if(token != null){
+  const headers = {
+    'token': token
+  };
 
-  const logout = (event) => {
-   sessionStorage.removeItem('token')
-  this.setState({
-    logout: true
-  })
-   }
+  API.get('dashboard/details', { headers: headers }).then(response => {
+    console.log("me***********AppBAr")
+    console.log(response.data)
+   
+          var user = response.data
+          setName(user.firstName)
+          if(user.role == 'instructor'){
+              setIsInstructor(true)
+              setView('instructor')
 
-  function handleMenu(event) {
-    this.setState({
-      anchorEl: (event.currentTarget)
-  })
+          }
+        
+        
+    })
+  }
+  },[])
+
+  const handleBackButton = () => {
+    setRedirect(true)
 }
-
-  function handleClose() {
-    this.setState({
-      anchorEl: null
-  })
-  }
-
-  if(this.state.logout){
-    return (<Redirect to='/'></Redirect>)
-  }
+    
+    if(logout){
+      return <Redirect to="/"></Redirect>
+    }else if(studentView){
+      sessionStorage.setItem('view', 'instructor')
+      history.push('/studentview')
+      return <Redirect to="/studentview"></Redirect>
+    }else if(redirect){
+      // history.push('/')
+      // return <Redirect to="/"></Redirect>
+      var value
+      if(props.from == "course"){
+        value = 0
+      }else{
+        value = 1
+      }
+      history.push('/', {value: value})
+      return <Redirect to="/"></Redirect>
+    }
 
   return (
     <div className={classes.root}>
-    
       <AppBar position="static" className={classes.appBar}>
-        <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            CODEWORD
-          </Typography>
-          { this.state.isLoggedIn? 
-            <div>
+
+        <Toolbar>  
+        <Grid container>
+           
+          <Typography variant="caption" className={classes.title}>
+          {
+            
+          } 
+          
+          {
+            window.innerWidth > 500?
+            <Box style={{width:'100%'}} display="flex" flexDirection="row" justifyContent="flex-start"   >
+             {props.backButton && view == "instructor" &&
+          
+            <Tooltip title="Back to dasboard">
               <IconButton
-                aria-label="Account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
+              size="small"
+                className={classes.backButton}
+                onClick={handleBackButton}
               >
-                <AccountCircle />
+                <ArrowBackIosIcon fontSize="large" />
               </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={this.state.anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={open}
-                onClose={handleClose}
+          </Tooltip>
+     
+          }
+          <Link underline="none" href='/'>
+          <img onClick={handleRedirect}
+          className={classes.media}
+          style={{
+            width:'40%',
+            height: 'auto'
+          }}
+          src={logo}
+        />
+        </Link>
+        </Box>:
+          <Box style={{width:'100%'}} display="flex" flexDirection="row" justifyContent="flex-start"   >
+             {props.backButton && view == "instructor" &&
+          
+            <Tooltip title="Back to dasboard">
+              <IconButton
+              size="small"
+                className={classes.backButton}
+                onClick={handleBackButton}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-              </Menu>
-              <Button onClick={logout} color="inherit">Logout</Button>
-            </div>
-          :null}
+                <ArrowBackIosIcon fontSize="inherit" />
+              </IconButton>
+          </Tooltip>
+     
+          }
+          <Link underline="none" href='/'>
+          <img onClick={handleRedirect}
+          className={classes.media}
+          style={{
+            width:'40%',
+            height: 'auto'
+          }}
+          src={logo}
+        />
+        </Link>
+        </Box>
+          }
+          
+      
+          </Typography>
+          
+            <Grid className={classes.navTool} item xs={12} sm={6}>
+            <Box p={0} style={{width:'100%', margin:0}} display="flex" flexDirection="row" justifyContent="flex-end"  >
+          {token != null &&
+          <Box item display="flex" flexDirection="row">
+          <Button
+            color="inherit"
+            className={classes.button}
+          > 
+            { name? 'Hi '+name:null}
+          </Button>
+          <div style={{marginTop:8, width: 0, height: 20, color: green[600],borderLeft:'2px solid'}}></div>
+          </Box>
+          }
+          
+             {/* {token != null && isInstructor && !disableStudentView &&
+              <Box p={2} item>
+          <div style={{height: 24, borderLeft: '2px solid', borderColor: green[600]}}></div>
+          </Box>
+             } */}
+          {token != null && isInstructor && !disableStudentView &&
+           <Box item  item display="flex" flexDirection="row">
+          <Button 
+          color="inherit"
+          onClick={handleStudentView}
+          className={classes.button}
+          >
+            Student View
+          </Button>
+          <div style={{marginTop:8, width: 0, height: 20, color: green[600], borderLeft:'2px solid'}}></div>
+          </Box>
+           
+          }
+           {/* {token != null &&
+           <div style={{height: 24, borderLeft: '2px solid', borderColor: green[600]}}></div>
+           } */}
+          {token != null &&
+           <Box item>
+          <Button 
+          color="inherit"
+          className={classes.button}
+          onClick={handleLogout}
+          >
+            Logout
+          </Button>
+          </Box>
+          }
+          </Box>
+          </Grid>
+</Grid>
         </Toolbar>
+        
       </AppBar>
     </div>
   );
- }
 }
-export default withStyles(useStyles)(MyAppBar);
