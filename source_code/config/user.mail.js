@@ -25,3 +25,18 @@ var sendMail = function (email, temp_password) {
                 pass: decodeJson.password
             }
         });
+        let mailOptions = {
+            from: "CodeWord App",
+            to: email,
+            subject: 'CodeWord Temporary Password',
+            text: 'Hello, '+ email,
+            html: '<b>Your new temporary Password: </b>'+ temp_password // html body
+        };
+        transporter.sendMail(mailOptions, (error, info) => {
+            console.log("sent mail");
+        });
+    });
+});
+}
+
+module.exports.sendMail = sendMail;
