@@ -30,15 +30,12 @@ var UserModel = mongoose.model('UserModel', {
         enum: ['admin', 'student', 'instructor'],
         require: true
     },
-    is_active: {
-        type: Boolean,
-        require: true,
-        default: false
-    },
     last_login: {
         type: Date,
+        default: new Date()
     },
-    course: [
+    instructor_role_request:{type:Boolean},
+    courses: [
         {
             course_id: { type: String },
             isRevealed: { type: Boolean }
@@ -50,14 +47,27 @@ var UserModel = mongoose.model('UserModel', {
             codewordsetname: { type: String }
         }
     ],
+    resetPasswordToken:{
+        type: String, 
+        default: null
+    },
+    resetPasswordExpires: {
+        type: Date,
+        default: null
+    },
+    emailVerificationToken: {
+        type: String, 
+        default: null
+    },
+    isEmailVerified:{
+        type: Boolean, 
+        default: false
+    },
     created_at: {
         type: Date
     },
     updated_at: {
         type: Date,
     }
-
-
-
 });
 module.exports.UserModel = UserModel
