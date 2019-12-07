@@ -373,4 +373,26 @@ export default function CodewordSet(props) {
         }
     }
 
-        
+ const updateCourseRow = (resolve, newData, oldData) => {
+        var data = {
+            id: props.match.params.id,
+@@ -404,7 +453,15 @@ export default function CodewordSet(props) {
+        setOpen(false)
+    };
+
+    const handleDialogClose = () =>{
+        setAddCodewordDialog(false)
+    }
+
+    const handleChange = name => (event) =>{
+            if([name] == 'newCodeword'){
+                setState({...state, newCodeword: event.target.value})
+            }
+    }
+    const handleFinalize = value => {
+
+        const headers = {
+@@ -711,10 +768,7 @@ export default function CodewordSet(props) {
+                                        }}
+                                        editable={{
+                                            onRowAdd: !disableEdit ? newData =>        
