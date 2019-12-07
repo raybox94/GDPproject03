@@ -1,6 +1,6 @@
 import { Box, Button, CircularProgress, Container, CssBaseline, Dialog, 
     DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, 
-    IconButton, Slide, Snackbar, Tooltip } from '@material-ui/core';
+    IconButton, Slide, Snackbar, Tooltip, Fab, TextField } from '@material-ui/core';
 import { green, grey, lightGreen, red } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -110,13 +110,19 @@ const useStyles = makeStyles(theme => ({
     },
     iconButton: {
         background: grey[300],
-        margin: theme.spacing(1),
-        color: grey[900]
-    },
+        margin: theme.spacing(2, 0, 0, 2),
+        color: grey[800],
+        "&:hover": {
+            backgroundColor: grey[400]
+        }
+        },
     iconButtonDelete: {
         background: grey[300],
-        margin: theme.spacing(1),
-        color: red[900]
+        margin: theme.spacing(2, 2, 2, 2),
+        "&:hover": {
+            backgroundColor: grey[400]
+        },
+        color: red[800]
     },
     appBar: {
         borderRadius: 5,
@@ -151,6 +157,7 @@ export default function CodewordSet(props) {
     const [state, setState] = useState({
         id: props.match.params.id,
         codewordSetName: '',
+         newCodeword: ''
 
     })
 
@@ -161,6 +168,10 @@ export default function CodewordSet(props) {
     const [snack, setSnack] = useState({
         message: '',
         open: false
+    })
+   
+    const [addCodewordDialog, setAddCodewordDialog] = useState({
+        open: false,
     })
     const [table, setTable] = useState({
         columns: [
@@ -177,6 +188,7 @@ export default function CodewordSet(props) {
     const [loading, setLoading] = useState(false)
     const [redirect, setRedirect] = useState(false)
     const [pageSize, setPageSize] = useState(5)
+    
     useEffect(() => {
         var pageSize = parseInt(sessionStorage.getItem('pageSizeCodewordset', 5))
         setPageSize(pageSize)
@@ -318,20 +330,20 @@ export default function CodewordSet(props) {
         }
     }
 
-    const updateCourseRow = (resolve, newData, oldData) => {
+       const addCodewordRowNew = (event) => {
+
+        event.preventDefault()
         var data = {
             id: props.match.params.id,
-            newCodeword: newData.codeword,
-            oldCodeword: oldData.codeword,
+            codeword: state.newCodeword.trim().toLowerCase(),
         }
+        const headers = {
+            'token': sessionStorage.getItem('token')
+        };
 
-        var check = checkCodeword(newData.codeword)
+        var check = checkCodeword(data.codeword)
         if (check === 'true') {
-            const headers = {
-                'token': sessionStorage.getItem('token')
-            };
-            console.log(newData)
-            API.post('dashboard/updatecodeword', data, { headers: headers }).then(response => {
+            API.post('dashboard/addcodeword', data, { headers: headers }).then(response => {
                 console.log(response.data)
                 if (response.data.code == 200) {
                     setSnack({
@@ -339,16 +351,17 @@ export default function CodewordSet(props) {
                         open: true
                     })
                     const data = [...table.data];
-                    data[data.indexOf(oldData)] = newData;
+                    data.push(state.newCodeword);
                     setTable({ ...table, data });
+                    console.log('render' + render)
                   //  setRender(!render)
-                    resolve()
+
                 } else {
                     setSnack({
                         message: response.data.message,
                         open: true
                     })
-                    resolve()
+
                 }
             })
         } else {
@@ -356,7 +369,7 @@ export default function CodewordSet(props) {
                 open: true,
                 message: check
             })
-            resolve()
+
         }
     }
 
