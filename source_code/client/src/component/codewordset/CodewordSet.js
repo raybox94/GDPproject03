@@ -815,3 +815,49 @@ export default function CodewordSet(props) {
                         </Button>
                             </DialogActions>
                         </Dialog>
+
+                        <Dialog
+                        open={addCodewordDialog}
+                        onClose={handleDialogClose}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
+                    >
+                        <DialogTitle id="alert-dialog-title">{"Add Codeword"}</DialogTitle>
+
+                        <form onSubmit={addCodewordRowNew} className={classes.form} >
+
+                            <TextField
+                                className={classes.textField}
+                                required
+                                variant="outlined"
+                                margin="normal"
+                                margin="dense"
+                                name="newCodeword"
+                                label="Codeword"
+                                type="text"
+                                id="newCodeword"
+                                value={state.newCodeword}
+                                onChange={handleChange('newCodeword')}
+                            />
+
+                            <DialogActions>
+                                <Button onClick={handleDialogClose} color="secondary">
+                                    Cancel
+                            </Button>
+                                <Button 
+                                type="submit" 
+                                color="primary" 
+                                autoFocus>
+                                    Add
+                            </Button>
+                            </DialogActions>
+                        </form>
+                    </Dialog>
+                    </Container>
+                }
+            </div>
+                                    
+                                    
+                                    
+                                    
+                                    
