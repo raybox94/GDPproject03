@@ -1,14 +1,13 @@
-import Typography from '@material-ui/core/Typography';
-import React, { useState, Component, useEffect } from 'react';
+import { Box, Grid, Link, Paper, Tooltip } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
-import { withStyles } from '@material-ui/core/styles';
-import { green, lightGreen, red } from '@material-ui/core/colors';
-import { Paper, Grid } from '@material-ui/core';
-import { withRouter } from 'react-router-dom'
-import API from '../../utils/API'
-import { makeStyles } from '@material-ui/core/styles';
 import CardActionArea from '@material-ui/core/CardActionArea';
+import { green, lightGreen, red } from '@material-ui/core/colors';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import React, { useEffect, useState } from 'react';
 import { Redirect } from "react-router-dom";
+import history from '../../history';
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -28,7 +27,9 @@ const useStyles = makeStyles(theme => ({
     },
     paper2: {
         padding: 10,
-        margin: 10,
+        margin: theme.spacing(2,0,2,0),
+        minWidth: 220,
+        minHeight: 55,
         background: lightGreen[200]
     },
     title: {
@@ -44,6 +45,14 @@ const useStyles = makeStyles(theme => ({
         padding: 5,
         marginTop: 5
 
+    },
+    startSurvey:{
+       marginRight: theme.spacing(1)
+    },
+    clickable:{
+        "&:hover":{
+            cursor: "pointer"
+        }
     }
 }));
 export default function CourseCard(props) {
@@ -87,34 +96,86 @@ export default function CourseCard(props) {
 
     }
     if (redirect) {
+        history.push('/course'+props.id)
         return <Redirect to={'/course/' + props.id}></Redirect>
     }
+
+    const LightTooltip = withStyles(theme => ({
+        tooltip: {
+          backgroundColor: green[100],
+          color: 'rgba(0, 0, 0, 0.87)',
+          boxShadow: theme.shadows[1],
+          fontSize: 13,
+        },
+      }))(Tooltip);
+
+      const handleClone = ()=>{
+
+      }
 
     return (
 
         <Grid item xs={12} sm={3} md={3} lg={3}>
-            
+              <CardActionArea onClick={handleCardClick}>
                 <Paper className={classes.paper}>
-                <CardActionArea onClick={handleCardClick}>
-                    <div className={classes.appBar}>
+              
+                    <Grid  container className={classes.appBar}>
                         <AppBar position="static" className={classes.appBar}>
-                            <Typography variant="h6" className={classes.title}>
+                            { window.innerWidth > 500?
+                            <LightTooltip title={props.courseName}  enterDelay={500} placement="top-start">
+                            <Typography noWrap variant="h6" className={classes.title}>
                                 {props.courseName}
                             </Typography>
+                            </LightTooltip>
+                            :
+                            <Typography variant="h6" className={classes.title}>
+                            {props.courseName}
+                            </Typography>
+                    }
                         </AppBar>
-                    </div>
-
+                    </Grid>
+                   
+                    <div className={classes.clickable} onClick={handleCardClick}>
+                    <Grid container>
+                        <Grid item xs ={1} sm={1}></Grid>
+                       
+                        <Grid item xs ={10} sm={10}>
+                    <Box display="flex">
+                       
                     <Paper className={classes.paper2}>
-                        <Typography variant="h8" className={classes.title}>
+                    <Box display="flex" justifyContent="center">
+                        <Typography gutterBottom component="div" variant="body1" >
+                            <Box fontSize={17} fontWeight="bold">
                             Aknowledged: {props.ack}
-                        </Typography><br></br>
-                        <Typography variant="h8" className={classes.title}>
-                            Start Survey: {props.startSurvey}
-                        </Typography><br></br>
-                        <Typography variant="h8" className={classes.title}>
-                            End Survey: {props.endSurvey}
+                            </Box>
                         </Typography>
+                        </Box>
+                        <Box display="flex" justifyContent="space-between">
+                        <Box display="flex">
+                        { props.startSurvey != 'Unpublished'?
+                        <Link onClick={event => event.stopPropagation()} target="_blank" href={props.startSurvey} variant="caption" className={classes.startSurvey}>
+                         Start Survey Link
+                        </Link>
+                        :<Typography className={classes.startSurvey} variant="caption">Start Survey: N/A</Typography>
+                        }
+                        </Box>
+                        <Box display="flex">
+                        { props.endSurvey != 'Unpublished'?
+                        <Link onClick={event => event.stopPropagation()} target="_blank" href={props.endSurvey} variant="caption" className={classes.link}>
+                         End Survey Link
+                        </Link>                       
+                        :<Typography className={classes.startSurvey} variant="caption">End Survey: N/A</Typography>
+                        }
+                        </Box>
+                      </Box>
                     </Paper>
+                  
+                    </Box>
+                    </Grid>
+                    <Grid item xs={1} sm={1}></Grid>
+                    </Grid>
+                    </div>
+                  
                     <Grid className={classes.dates} container spacing={0}>
                         <Grid item xs={12} sm={6} md={6} lg={6}>
                             <Typography variant="caption" className={classes.title}>
@@ -127,22 +188,43 @@ export default function CourseCard(props) {
                             </Typography>
                         </Grid>
                     </Grid>
+                    
                     {(props.isAssigned) ?
                         <Paper className={classes.banner1}>
-
-                            <Typography variant="h8" className={classes.title}>
-                                CODEWORD ASSIGNED
+                                <Box display="flex" justifyContent="center">
+                    <Typography component="div">
+                                <Box fontWeight="bold" fontSize={15}>
+                                ASSIGNED
+                                </Box>
                     </Typography>
+                    </Box>
                         </Paper> :
                         <Paper className={classes.banner2}>
-                            <Typography variant="h8" className={classes.title}>
-                                CODEWORD NOT ASSIGNED
+                            <Box display="flex" justifyContent="center">
+                           <Typography component="div">
+                                <Box fontWeight="bold" fontSize={15}>
+                                NOT ASSIGNED
+                                </Box>
+                              
                     </Typography>
+                
+                    </Box>
+                   
                         </Paper>
                     }
-                     </CardActionArea>
+                     {/* <IconButton
+                            key="close"
+                            aria-label="Close"
+                            color="inherit"
+                            className={classes.close}
+                            onClick={handleClone}
+                        >
+                            <ControlPointDuplicateIcon />
+                        </IconButton> */}
                 </Paper>
-           
+              
+                </CardActionArea>
+               
         </Grid>
 
     );

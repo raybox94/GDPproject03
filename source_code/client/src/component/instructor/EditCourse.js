@@ -1,27 +1,17 @@
-import Typography from '@material-ui/core/Typography';
-import React, { useState, Component, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import { withStyles } from '@material-ui/core/styles';
-import { green, lightGreen, red, grey } from '@material-ui/core/colors';
-import {
-    Paper, Grid, Button, FormControl, InputLabel,
-    MenuItem, OutlinedInput, Select, Box, Snackbar, IconButton
-} from '@material-ui/core';
-import { withRouter } from 'react-router-dom'
-import API from '../../utils/API'
-import TextField from '@material-ui/core/TextField'
-import Container from '@material-ui/core/Container'
-import CssBaseline from '@material-ui/core/CssBaseline'
 import DateFnsUtils from '@date-io/date-fns';
+import { Box, Button, CircularProgress, FormControl, Grid, 
+    IconButton, InputLabel, MenuItem, OutlinedInput, Select, 
+    Snackbar, SnackbarContent, Slide } from '@material-ui/core';
+import { green, grey, lightGreen, red } from '@material-ui/core/colors';
+import Container from '@material-ui/core/Container';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import TextField from '@material-ui/core/TextField';
 import CloseIcon from '@material-ui/icons/Close';
-import { flexbox } from '@material-ui/system';
-import {
-    MuiPickersUtilsProvider,
-    KeyboardDatePicker
-} from '@material-ui/pickers';
+import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import API from '../../utils/API';
 
 var moment = require('moment');
 var _ = require("underscore");
@@ -45,6 +35,18 @@ const useStyles = makeStyles(theme => ({
     title: {
         padding: 10
     },
+    wrapper: {
+        margin: theme.spacing(1),
+        position: 'relative',
+      },
+      buttonProgress: {
+        color: green[500],
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        marginTop: -12,
+        marginLeft: -12,
+      },
     banner1: {
         background: lightGreen[200],
         paddingLeft: 20
@@ -107,7 +109,10 @@ export default function EditCourse(props) {
         status: false,
         error: false,
         message: '',
-        reRender: false
+        reRender: false,
+        snackcolor:{
+            backgroundColor: grey[800]
+        }
     })
     const [publishedCodewordset,SetPublishedCodewordset] = useState([{
         codewordSetName: ''
@@ -115,7 +120,7 @@ export default function EditCourse(props) {
     const [course, setCourse] = useState({
         courseName: props.data.courseName,
         startSurvey: props.data.startSurvey=='Unpublished'?'':props.data.startSurvey,
-        endSurvey: props.data.startSurvey=='Unpublished'?'':props.data.startSurvey,
+        endSurvey: props.data.endSurvey=='Unpublished'?'':props.data.endSurvey,
         startDate: props.data.startDate,
         endDate:props.data.endDate,
         codewordSet: props.data.codewordset,
@@ -127,6 +132,7 @@ export default function EditCourse(props) {
     const [disableUpdate, setDisableUpdate] = useState('true')
     const [labelWidth, setLabelWidth] = React.useState(0);
     const [disableField, setDisableField] = useState(false)
+    const [loading, setLoading] = useState(false)
     React.useEffect(() => {
         setLabelWidth(inputLabel.current.offsetWidth);
         if(props.data.isAssigned){
@@ -137,7 +143,7 @@ export default function EditCourse(props) {
     const data = {
         courseName: props.data.courseName,
         startSurvey: props.data.startSurvey=='Unpublished'?'':props.data.startSurvey,
-        endSurvey: props.data.startSurvey=='Unpublished'?'':props.data.startSurvey,
+        endSurvey: props.data.endSurvey=='Unpublished'?'':props.data.endSurvey,
         startDate: props.data.startDate,
         endDate:props.data.endDate,
         codewordSet: props.data.codewordset,
@@ -209,24 +215,33 @@ export default function EditCourse(props) {
 
         API.post('dashboard/updateCourse', formData, { headers: headers }).then(response => {
             console.log('👉 Returned data in :', response);
-            if (response.status == 200) {
+            if (response.data.code == 200) {
                 setState({
                     status: true,
                     message: response.data.message,
-                    reRender: true
+                    reRender: true,
+                    snackcolor:{
+                        backgroundColor: lightGreen[800]
+                    }
                 })
             } else {
                 console.log('error')
                 setCourse({
                     courseName: course.courseName,
                     startDate: course.startDate,
-                    endDate: course.endDate
+                    endDate: course.endDate,
+                    startSurvey: course.startSurvey,
+                    endSurvey: course.endSurvey,
+                    codewordSet: course.codewordSet
                 })
 
                 setState({
                     status: true,
                     error: true,
-                    message: response.data.message
+                    message: response.data.message,
+                    snackcolor:{
+                        backgroundColor: red[800]
+                    }
                 })
             }
         })
@@ -242,7 +257,10 @@ export default function EditCourse(props) {
                 setState({
                     status: true,
                     error: true,
-                    message: error.message
+                    message: error.message,
+                    snackcolor:{
+                        backgroundColor: red[800]
+                    }
                 })
             })
             ;
@@ -252,7 +270,7 @@ export default function EditCourse(props) {
     }
 
     const handleClose = () => {
-        console.log(props.data)
+      //  console.log(props.data)
         props.onClose()
     }
 
@@ -261,8 +279,12 @@ export default function EditCourse(props) {
             courseName: course.courseName,
             startDate: course.startDate,
             endDate: course.endDate,
+            startSurvey: course.startSurvey,
+            endSurvey: course.endSurvey,
+            codewordSet: course.codewordSet,
             status: false
         })
+        setState( {status: false})
         if (!state.error) {
             props.onClose(state.error)
         }
@@ -277,6 +299,7 @@ export default function EditCourse(props) {
     }])
     useEffect(() => {
         console.log('getdata')
+        setLoading(true)
         const headers = {
             'Content-Type': 'application/json',
             'token':  state.token
@@ -293,11 +316,13 @@ export default function EditCourse(props) {
                     )
                     SetPublishedCodewordset(response.data.data.filter((item)=>{
                         if(item.isPublished){
-                            return {codewordSetName: item.codewordSetName}
+                            return {codewordSetName: item.codewordSetName,
+                                count: item.codewords.length}
                         }
                     }
                     ))
                     console.log(response.data.data)
+                    setLoading(false)
             }
         })
 
@@ -332,7 +357,7 @@ export default function EditCourse(props) {
                         ref={fileLabel}
                         onChange={handleFileChange}
                     />
-                    <label htmlFor="text-button-file">
+                    {/* <label htmlFor="text-button-file">
                         <Grid container spacing={1}>
                             <Grid item xs={8} sm={8} md={8} lg={8}>
                                 <TextField fullWidth="true" className={classes.textField}
@@ -351,7 +376,7 @@ export default function EditCourse(props) {
                             </Grid>
                         </Grid>
 
-                    </label>
+                    </label> */}
 
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                         <Grid container spacing={5}>
@@ -390,13 +415,13 @@ export default function EditCourse(props) {
 
                         </Grid>
                     </MuiPickersUtilsProvider>
-
+                    <div className={classes.wrapper}>
                     <FormControl margin='dense' fullWidth="true" variant="outlined" className={classes.formControl}>
                         <InputLabel ref={inputLabel} htmlFor="outlined-age-simple">
                             Codeword Set
-        </InputLabel>
+                    </InputLabel>
                         <Select
-                             disabled={disableField}
+                             disabled={disableField || loading}
                             value={course.codewordSet}
                             onChange={handleChange('codewordSet')}
                             input={<OutlinedInput labelWidth={labelWidth} name="Codeword Set" id="outlined-age-simple" />}
@@ -405,10 +430,14 @@ export default function EditCourse(props) {
                                 <em>None</em>
                             </MenuItem>
                             {publishedCodewordset.map((codewordSet)=>{
-                                return <MenuItem value={codewordSet.codewordSetName}>{codewordSet.codewordSetName}</MenuItem>
+                                return <MenuItem value={codewordSet.codewordSetName}>{
+                                    codewordSet.codewordSetName + ' (' + codewordSet.count + ')'
+                                }</MenuItem>
                             })}
                         </Select>
-                    </FormControl>
+                    </FormControl> 
+                    {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
+                    </div>
                     <TextField className={classes.textField}
                         variant="outlined"
                         fullWidth
@@ -465,9 +494,13 @@ export default function EditCourse(props) {
             </div>
             <Snackbar
                 anchorOrigin={{
-                    vertical: 'bottom',
+                    vertical: 'top',
                     horizontal: 'left',
-                }}
+                  }}
+                  TransitionComponent={Slide}
+                  TransitionProps={
+                    { direction: "right" }
+                  }
                 open={state.status}
                 autoHideDuration={2000}
                 variant="success"
@@ -484,7 +517,11 @@ export default function EditCourse(props) {
                         <CloseIcon />
                     </IconButton>,
                 ]}
-            ></Snackbar>
+            >
+                      <SnackbarContent style={state.snackcolor}
+                        message={<span id="client-snackbar">{state.message}</span>}
+                    />
+            </Snackbar>
         </Container>
     );
 }

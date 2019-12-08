@@ -1,16 +1,11 @@
-import Typography from '@material-ui/core/Typography';
-import React, { useState, Component, useEffect } from 'react';
+import { Box, Button, Grid, IconButton, Link, Paper, Tooltip, Zoom } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
-import { withStyles } from '@material-ui/core/styles';
-import { green, lightGreen, grey } from '@material-ui/core/colors';
-import { Paper, Grid, Button, Zoom, IconButton, Tooltip, Box, Link} from '@material-ui/core';
-import { withRouter } from 'react-router-dom'
-import API from '../../utils/API'
-import { makeStyles } from '@material-ui/core/styles';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import { Redirect } from "react-router-dom";
+import { green, grey } from '@material-ui/core/colors';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
-
+import React, { useState } from 'react';
+import API from '../../utils/API';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -48,8 +43,7 @@ const useStyles = makeStyles(theme => ({
         margin: theme.spacing(1)
     }
 
-}))
-
+}));
 export default function CourseCard(props) {
     const classes = useStyles();
     const [reveal, setReveal] = useState(props.isRevealed)
@@ -80,6 +74,7 @@ export default function CourseCard(props) {
         })
 
     }
+
     const handleCopy = () => {
         navigator.permissions.query({name: "clipboard-write"}).then(result => {
             if (result.state == "granted" || result.state == "prompt") {
@@ -100,7 +95,7 @@ export default function CourseCard(props) {
                 <div className={classes.appBar}>
                     <AppBar position="static" className={classes.appBar}>
                         {
-                        <LightTooltip title={props.courseName} placement="top-start">
+                        <LightTooltip title={props.courseName} placement="top-start" enterDelay={500}>
                         <Typography noWrap variant="h6" className={classes.title}>
                             {props.courseName} 
                         </Typography>
@@ -135,8 +130,8 @@ export default function CourseCard(props) {
                         </Grid>
                     }
                 </Paper>
-                {(props.startSurvey != 'Unpublished' || props.endSurvey != 'Unpublished') &&
-                <Paper className={classes.survey}>
+               
+                <div className={classes.survey}>
               <Box display="flex" justifyContent="space-between">
                         { props.startSurvey != 'Unpublished'?
                        <Box display="flex" >
@@ -144,7 +139,7 @@ export default function CourseCard(props) {
                          Start Survey
                       </Link>
                       </Box>
-                        :false
+                        :<Typography variant="body">Start Survey: N/A</Typography>
                         }
                         { props.endSurvey != 'Unpublished'?
                      <Box display="flex" >
@@ -152,12 +147,12 @@ export default function CourseCard(props) {
                          End Survey
                       </Link>
                    </Box>
-                        :false
+                        :<Typography variant="body">End Survey: N/A</Typography>
                         }
                      
                      </Box>
-                    </Paper>
-                }
+                    </div>
+                
             </Paper>
                     
         </Grid>
