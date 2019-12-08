@@ -254,6 +254,62 @@ var validateEmail = (req, res) => {
 }
 module.exports.validateEmail = validateEmail;
 
+var tempPassword = (req, res ) => {
+    var body = _.pick(req.body,['email']);
+    console.log('Tempa'+ body.email);
+    var chars = "abcdefghijklmnopqrstuvwxyz@#$%&*ABCDEFGHIJKLMNOP123456789";
+    var temporaryPassword = "";
+    for (var x = 0; x < 5; x++) {
+        var i = Math.floor(Math.random() * chars.length);
+        temporaryPassword += chars.charAt(i);
+    }
+    bcrypt.genSalt(10, (err,salt) => {
+        bcrypt.hash(temporaryPassword,salt,(err,hash) => {
+        hashPassword = hash;
+        UserModel.updateOne({emailKey: body.email },{$set: {password: hashPassword}}, (err,result) =>{
+        if(!res){
+            return  res.status(400).send("Error");
+        }
+        console.log(body.email+"   "+temporaryPassword);
+        mailController.sendMail(body.email,temporaryPassword);
+        return res.json({ code: 200, message: true});
+     });
+     });
+    });
+}
+module.exports.tempPassword = tempPassword;
+
+var changePassword = (req,res) => { 
+    var body = _.pick(req.body,['password']);
+    console.log("change password:"+ req.session.id+" Change Password:"+body.password); 
+    var hashPassword="";
+    bcrypt.genSalt(10, (err,salt) => {
+    bcrypt.hash(body.password,salt,(err,hash) => {
+        hashPassword = hash;
+    
+    UserModel.updateOne({_id: req.session.id },{$set: {password: hashPassword}}, (err,result) =>{
+        if(!res){
+            return  res.status(400).send("Unable to change Password!!");
+        }
+        return res.json({ code: 200, message: true});
+     });
+    });
+   });
+}
+module.exports.changePassword = changePassword;
+
+
+const sendResetEmail = async (req,res) => {
+    try{
+        await mailController.sendResetEmail(req.body.username)
+        return res.send("success")
+    }catch (err) {
+        return res.send("failed")
+    }
+}
+module.exports.sendResetEmail = sendResetEmail
+
+
 const reset = (req,res) => {
     UserModel.findOne({emailKey: req.session.username}, function (err, userModel) {
         if(err) return res.json({ code: 200, message: 'Email id not registered!!'});
@@ -270,6 +326,9 @@ const reset = (req,res) => {
     })
 }
 module.exports.reset = reset
+
+
+
 
 const checkUsers = (req,res) =>{
     //var body = _.pick(req.body,['email']);
