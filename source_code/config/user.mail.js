@@ -25,6 +25,7 @@ var sendMail = function (email, temp_password) {
                 pass: decodeJson.password
             }
         });
+    
         let mailOptions = {
             from: "CodeWord App",
             to: email,
@@ -41,6 +42,7 @@ var sendMail = function (email, temp_password) {
 
 module.exports.sendMail = sendMail;
 
+/* Token containing credentials */
 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlM1MzA3NDJAbndtaXNzb3VyaS5lZHUiLCJwYXNzd29yZCI6IlN1dmFybmE5JCIsImlhdCI6MTU0MDUwMTAxOSwiZXhwIjoxNTcyMDM3MDE5fQ.Z1RJF2noETqetSDvivi004vp27iMnt2uoCARPqS_6yc"
 
 /* Decode Token */

@@ -1,4 +1,6 @@
-
+/**
+ * @author Ujjawal Kumar <S530473@nwmissouri.edu>
+ */
 var jwt = require('jsonwebtoken');
 const _ = require('lodash');
 
@@ -12,15 +14,18 @@ var tokencheck = (req,res,next) => {
      jwt.verify(token, 'codewordnwmsu', (err, decoded) =>{
         if(err)
         {
+          
           return res.status(400).json({message: 'Unauthorized User.' });
         }
-       // console.log(decoded)
+        console.log('*********authorized*************')
+        console.log(decoded)
         req.session = decoded
       //  console.log("_id:"+ req.session.id);
       //  console.log("email:"+req.session.email);
         next();
      });
     } else{
+      console.log('*********invalid*************')
       res.status(400)
         .json({message: "Invalid auth token provided."})
       }
