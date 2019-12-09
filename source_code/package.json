@@ -9,7 +9,6 @@
   "dependencies": {
     "anagram-finder": "^1.0.2",
     "axios": "^0.18.0",
-    "bcrypt": "^3.0.4",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.4",
@@ -42,16 +41,16 @@
     "xlsx": "^0.14.0",
     "xlsx2json": "^1.0.0"
   },
-  "description": "[Template for a Project Charter](https://profcase.github.io/project-charter-template) document used to formalize project understanding.",
+  "description": "",
   "main": "codeword.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chvnaveenkumar/CodeWord.git"
+    "url": "git+https://github.com/raybox94/GDPproject03.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/chvnaveenkumar/CodeWord/issues"
+    "url": "https://github.com/raybox94/GDPproject03/issues"
   },
-  "homepage": "https://github.com/chvnaveenkumar/CodeWord#readme"
+  "homepage": "https://github.com/raybox94/GDPproject03#readme"
 }
