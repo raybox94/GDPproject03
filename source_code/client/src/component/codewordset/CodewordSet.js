@@ -357,6 +357,7 @@ export default function CodewordSet(props) {
                     const data1 = [...table.data];
                     data1.push(newCodeword);
                     setTable({ ...table, data1 });
+                    setNewCodeword('')
                   //  console.log('render' + render)
                    setRender(!render)
                  // setAddCodewordDialog(false)
@@ -530,7 +531,7 @@ export default function CodewordSet(props) {
         return (
             <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
                 <DialogTitle id="simple-dialog-title">Edit Codeword Set</DialogTitle>
-                <EditCodewordSet data={data} onClose={handleClose}></EditCodewordSet>
+                <EditCodewordSet data={data} oldCodewords={table.data.map((i)=>{ return i.codeword})} onClose={handleClose}></EditCodewordSet>
             </Dialog>
         );
     }
@@ -675,7 +676,7 @@ export default function CodewordSet(props) {
                                                 variant="extended"
                                                 className={classes.iconButton}
                                                 onClick={handleClickOpen}
-                                            // disabled={disableEdit}
+                                                disabled={disableEdit}
                                             >
                                                 <EditIcon style={{ color: grey[800] }} />
                                                 <Typography variant="body2" style={{ fontWeight: 500 }}>Edit</Typography>
