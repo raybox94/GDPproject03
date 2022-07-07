@@ -15,7 +15,7 @@
     "fs": "0.0.1-security",
     "material-table": "^1.50.0",
     "material-ui-pickers": "^2.2.4",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "papaparse": "^5.0.2",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
